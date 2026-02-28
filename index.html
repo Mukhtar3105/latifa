@@ -17,10 +17,15 @@
       --card: rgba(255,255,255,.58);
       --shadow: 0 10px 30px rgba(0,0,0,.08);
       --radius: 999px;
-      --maxw: 540px;
+      --maxw: 560px;
 
       --decorOpacity: .88;
       --decorOpacityMobile: .72;
+
+      --capsSize: 20px;
+      --capsSizeBig: 22px;
+      --countTitle: 19px;
+      --btnSize: 19px;
     }
 
     *{ box-sizing:border-box; }
@@ -35,7 +40,6 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Background */
     .bg{
       position:fixed;
       inset:0;
@@ -50,7 +54,6 @@
       pointer-events:none;
     }
 
-    /* Layout */
     .wrap{
       width:min(var(--maxw), 92vw);
       margin:0 auto;
@@ -63,7 +66,6 @@
     }
     .center{ text-align:center; }
 
-    /* Fade */
     .fade{
       opacity:0;
       transform: translateY(12px);
@@ -74,7 +76,6 @@
     .fade.d4{ animation-delay:.36s; }
     @keyframes fadeUp{ to{ opacity:1; transform: translateY(0); } }
 
-    /* Cards */
     .card{
       position:relative;
       background: var(--card);
@@ -82,7 +83,7 @@
       border-radius: 22px;
       padding: 22px 18px;
       box-shadow: var(--shadow);
-      z-index:5; /* текст выше декора */
+      z-index:5;
       backdrop-filter: blur(2px);
     }
     .card.soft{
@@ -93,7 +94,6 @@
       padding: 0;
     }
 
-    /* Typography */
     .script{
       font-family: "Great Vibes", cursive;
       color: var(--rose);
@@ -101,28 +101,30 @@
       text-shadow: 0 6px 22px rgba(180,122,134,.10);
     }
     .title-name{
-      font-size: clamp(44px, 9.5vw, 64px);
+      font-size: clamp(48px, 10vw, 70px);
       margin: 8px 0 8px;
       line-height:1;
     }
     .caps{
       text-transform: uppercase;
       letter-spacing: .14em;
-      font-size: 18px;
+      font-size: var(--capsSize);
       color: var(--rose2);
       margin: 0;
     }
-    .caps.big{ font-size: 20px; margin-top: 14px; }
-    .caps.black{ color: rgba(0,0,0,.72); }
+    .caps.big{
+      font-size: var(--capsSizeBig);
+      margin-top: 14px;
+    }
+    .caps.black{ color: rgba(0,0,0,.74); }
 
     .divider{
       height:1px;
-      width:min(340px, 82%);
-      margin: 14px auto;
+      width:min(360px, 86%);
+      margin: 16px auto;
       background: rgba(0,0,0,.18);
     }
 
-    /* HERO */
     .hero{
       min-height: 100svh;
       display:flex;
@@ -133,7 +135,11 @@
       margin-top: 0;
     }
 
-    /* element_6 scroll */
+    .scroll-text{
+      margin-top: 24px;
+      margin-bottom: 10px;
+    }
+
     .scroll-btn{
       display:inline-flex;
       align-items:center;
@@ -141,12 +147,11 @@
       background: transparent;
       border: 0;
       padding: 0;
-      margin-top: 10px;
       cursor:pointer;
       touch-action: manipulation;
     }
     .scroll-btn img{
-      width: 84px;
+      width: 86px;
       height: auto;
       display:block;
       filter: drop-shadow(0 10px 18px rgba(0,0,0,.10));
@@ -157,7 +162,6 @@
       50%{ transform: translateY(7px); opacity:1; }
     }
 
-    /* DECOR */
     .decor{
       position:absolute;
       pointer-events:none;
@@ -167,7 +171,6 @@
       will-change: transform;
       filter: drop-shadow(0 10px 24px rgba(0,0,0,.06));
     }
-
     @keyframes floaty{
       0%,100%{ transform: translate3d(0,0,0); }
       50%{ transform: translate3d(0,-10px,0); }
@@ -176,7 +179,6 @@
     .float.slow{ animation-duration: 9s; }
     .float.fast{ animation-duration: 5.5s; }
 
-    /* Edge anchors (stable on phones) */
     .d-left-top{
       left: clamp(-64px, -10vw, -18px);
       top:  clamp(-18px, -2vw, 10px);
@@ -197,8 +199,6 @@
       bottom: clamp(-28px, -6vw, -8px);
       width: clamp(170px, 46vw, 270px);
     }
-
-    /* Smaller “support” decor copies */
     .d-mini-left{
       left: clamp(-54px, -9vw, -14px);
       top:  clamp(70px, 16vw, 120px);
@@ -212,14 +212,13 @@
       opacity: .55;
     }
 
-    /* RSVP */
-    .form{ display:grid; gap: 12px; margin-top: 10px; }
+    .form{ display:grid; gap: 12px; margin-top: 12px; }
     .input{
       width:100%;
       border: 1px solid rgba(0,0,0,.22);
       border-radius: var(--radius);
-      padding: 14px 16px;
-      font-size: 16px;
+      padding: 15px 16px;
+      font-size: 17px;
       background: rgba(255,255,255,.45);
       outline:none;
     }
@@ -230,9 +229,9 @@
     .radios{
       display:grid;
       gap: 10px;
-      margin-top: 4px;
+      margin-top: 6px;
       text-align:left;
-      width: min(420px, 100%);
+      width: min(460px, 100%);
       margin-left:auto;
       margin-right:auto;
     }
@@ -240,7 +239,7 @@
       display:flex;
       align-items:center;
       gap: 10px;
-      font-size: 18px;
+      font-size: 20px;
       letter-spacing: .04em;
     }
     .radio input{ transform: scale(1.18); accent-color: var(--rose); }
@@ -248,8 +247,8 @@
     .btn{
       border: none;
       border-radius: var(--radius);
-      padding: 14px 18px;
-      font-size: 18px;
+      padding: 15px 18px;
+      font-size: var(--btnSize);
       letter-spacing: .12em;
       text-transform: uppercase;
       background: rgba(180,122,134,.78);
@@ -268,11 +267,10 @@
       text-align:center;
     }
 
-    /* Countdown */
     .countdown{ margin-top: 18px; }
     .count-title{
       text-align:center;
-      font-size: 18px;
+      font-size: var(--countTitle);
       letter-spacing: .14em;
       text-transform: uppercase;
       margin: 0 0 10px;
@@ -283,28 +281,27 @@
       gap: 10px;
       flex-wrap:wrap;
     }
-    .unit{ min-width: 82px; text-align:center; }
+    .unit{ min-width: 86px; text-align:center; }
     .flip{
       background: rgba(180,122,134,.70);
       color:#fff;
       border-radius: 14px;
       padding: 12px 10px;
-      font-size: 34px;
+      font-size: 36px;
       line-height: 1;
       box-shadow: 0 14px 26px rgba(180,122,134,.18);
       font-variant-numeric: tabular-nums;
     }
     .lab{
-      margin-top: 7px;
-      font-size: 13px;
+      margin-top: 8px;
+      font-size: 14px;
       letter-spacing:.14em;
       text-transform: uppercase;
       color: rgba(0,0,0,.55);
     }
 
-    /* Calendar */
     .cal{
-      width:min(420px, 100%);
+      width:min(440px, 100%);
       margin: 0 auto;
       border-radius: 18px;
       border: 1px solid rgba(0,0,0,.18);
@@ -316,7 +313,7 @@
     .cal-head{
       padding: 12px 14px;
       text-align:center;
-      font-size: 18px;
+      font-size: 19px;
       letter-spacing:.14em;
       text-transform: uppercase;
       color: rgba(0,0,0,.65);
@@ -329,7 +326,7 @@
     .dow div{
       padding: 10px 0;
       text-align:center;
-      font-size: 13px;
+      font-size: 14px;
       letter-spacing:.12em;
       text-transform: uppercase;
       color: rgba(0,0,0,.55);
@@ -338,34 +335,49 @@
     .grid div{
       padding: 12px 0;
       text-align:center;
-      font-size: 16px;
+      font-size: 17px;
       color: rgba(0,0,0,.75);
       border-top: 1px solid rgba(0,0,0,.08);
+      position: relative;
     }
     .grid div.empty{ color: transparent; }
     .grid div.sel{
-      position:relative;
       font-weight:600;
-      color: rgba(0,0,0,.85);
+      color: rgba(0,0,0,.86);
     }
     .grid div.sel::after{
       content:"";
       position:absolute;
       left:50%;
       top:50%;
-      width: 34px;
-      height: 34px;
+      width: 36px;
+      height: 36px;
       transform: translate(-50%,-50%);
       border-radius: 999px;
-      background: rgba(180,122,134,.20);
-      border: 1px solid rgba(180,122,134,.35);
+      background: rgba(180,122,134,.18);
+      border: 1px solid rgba(180,122,134,.34);
       z-index:-1;
     }
 
-    /* Map */
+    .butterfly-day{
+      position:absolute;
+      left:50%;
+      top:50%;
+      width: 52px;
+      transform: translate(-50%,-58%);
+      z-index: 2;
+      pointer-events:none;
+      filter: drop-shadow(0 10px 16px rgba(0,0,0,.12));
+      animation: flutter 2.9s ease-in-out infinite;
+    }
+    @keyframes flutter{
+      0%,100%{ transform: translate(-50%,-58%) rotate(-2deg) scale(1); opacity:.96; }
+      50%{ transform: translate(-50%,-68%) rotate(3deg) scale(1.04); opacity:1; }
+    }
+
     .mapbtn{
       display:inline-block;
-      padding: 14px 22px;
+      padding: 15px 22px;
       border-radius: var(--radius);
       text-transform: uppercase;
       letter-spacing: .12em;
@@ -373,22 +385,22 @@
       color:#fff;
       text-decoration:none;
       box-shadow: 0 12px 24px rgba(180,122,134,.22);
+      font-size: 18px;
     }
 
     .sign{
       margin-top: 26px;
-      font-size: clamp(34px, 8.5vw, 52px);
+      font-size: clamp(36px, 9vw, 56px);
     }
 
-    /* Mobile */
     @media (max-width: 520px){
       .decor{ opacity: var(--decorOpacityMobile); }
+      .butterfly-day{ width: 46px; }
     }
     @media (max-width: 380px){
-      .caps{ font-size: 16px; }
-      .caps.big{ font-size: 18px; }
-      .unit{ min-width: 74px; }
-      .flip{ font-size: 30px; }
+      :root{ --capsSize: 18px; --capsSizeBig: 20px; }
+      .unit{ min-width: 76px; }
+      .flip{ font-size: 32px; }
     }
   </style>
 </head>
@@ -401,7 +413,6 @@
 
     <!-- HERO -->
     <section class="hero center" id="top">
-      <!-- декор по краям (без element_5) -->
       <img class="decor d-left-top float slow" src="./element_3.png" alt="">
       <img class="decor d-right-top float" src="./element_2.png" alt="">
       <img class="decor d-left-bottom float fast" src="./element_1.png" alt="" style="opacity:.62;">
@@ -412,7 +423,8 @@
         <p class="caps">1 годик</p>
         <p class="caps big">Тұсаукесер</p>
         <div class="divider"></div>
-        <p class="caps">Прокрутите вниз</p>
+
+        <p class="caps scroll-text">Прокрутите вниз</p>
 
         <button class="scroll-btn" id="scrollToRsvp" type="button" aria-label="Прокрутить к подтверждению присутствия">
           <img src="./element_6.png" alt="">
@@ -428,7 +440,7 @@
       <img class="decor d-mini-right float slow" src="./element_4.png" alt="">
 
       <div class="card fade">
-        <div class="script" style="font-size:44px; margin-top:4px;">Дорогие гости!</div>
+        <div class="script" style="font-size:48px; margin-top:4px;">Дорогие гости!</div>
         <p class="caps black" style="margin-top:14px;">
           С радостью приглашаем Вас<br>
           на первый годик нашей доченьки<br>
@@ -448,7 +460,7 @@
       <img class="decor d-right-bottom float slow" src="./element_4.png" alt="" style="opacity:.55;">
 
       <div class="card fade">
-        <div class="script" style="font-size:44px;">Дата торжества:</div>
+        <div class="script" style="font-size:48px;">Дата торжества:</div>
         <p class="caps black" style="margin-top:10px;">
           11 апреля 2026 года<br>
           время 14:00
@@ -466,6 +478,38 @@
       </div>
     </section>
 
+    <!-- ✅ LOCATION СРАЗУ ПОСЛЕ ДАТЫ -->
+    <section class="center" id="location">
+      <img class="decor d-right-top float" src="./element_2.png" alt="">
+      <img class="decor d-left-bottom float fast" src="./element_1.png" alt="" style="opacity:.62;">
+      <img class="decor d-left-top float slow" src="./element_3.png" alt="" style="opacity:.55;">
+      <img class="decor d-right-bottom float slow" src="./element_4.png" alt="" style="opacity:.55;">
+
+      <div class="card fade">
+        <div class="script" style="font-size:48px;">Место проведения:</div>
+        <p class="caps black" style="margin-top:10px;">
+          Город Алматы<br>
+          улица Керей - Жанибек Хандар, 8<br>
+          ресторан "Sabroso"
+        </p>
+
+        <p class="caps black" style="margin-top:18px; opacity:.92;">
+          Для вашего удобства<br>
+          можете воспользоваться картой
+        </p>
+
+        <div style="height:10px"></div>
+
+        <a class="mapbtn" target="_blank" rel="noopener"
+           href="https://2gis.kz/almaty/search/Sabroso%20%D0%9A%D0%B5%D1%80%D0%B5%D0%B9%20%D0%96%D0%B0%D0%BD%D0%B8%D0%B1%D0%B5%D0%BA%20%D1%85%D0%B0%D0%BD%D0%B4%D0%B0%D1%80%208?m=76.962332%2C43.237115%2F19.87">
+          Открыть карту
+        </a>
+
+        <!-- ✅ Болат и Зара внизу этого же блока -->
+        <div class="script sign">С уважением,<br>Болат - Зара</div>
+      </div>
+    </section>
+
     <!-- RSVP -->
     <section class="center" id="rsvp">
       <img class="decor d-left-top float slow" src="./element_3.png" alt="">
@@ -474,7 +518,7 @@
       <img class="decor d-right-bottom float slow" src="./element_4.png" alt="" style="opacity:.6;">
 
       <div class="card fade">
-        <p class="caps black" style="font-size:18px;">
+        <p class="caps black" style="font-size:20px;">
           Подтвердите, пожалуйста, своё<br>присутствие:
         </p>
 
@@ -524,47 +568,14 @@
       </div>
     </section>
 
-    <!-- LOCATION -->
-    <section class="center" id="location">
-      <img class="decor d-right-top float" src="./element_2.png" alt="">
-      <img class="decor d-left-bottom float fast" src="./element_1.png" alt="" style="opacity:.62;">
-      <img class="decor d-left-top float slow" src="./element_3.png" alt="" style="opacity:.55;">
-      <img class="decor d-right-bottom float slow" src="./element_4.png" alt="" style="opacity:.55;">
-
-      <div class="card fade">
-        <div class="script" style="font-size:44px;">Место проведения:</div>
-        <p class="caps black" style="margin-top:10px;">
-          Город Алматы<br>
-          улица Керей - Жанибек Хандар, 8<br>
-          ресторан "Sabroso"
-        </p>
-
-        <p class="caps black" style="margin-top:18px; opacity:.92;">
-          Для вашего удобства<br>
-          можете воспользоваться картой
-        </p>
-
-        <div style="height:8px"></div>
-
-        <!-- ✅ 2GIS вместо Google -->
-        <a class="mapbtn" target="_blank" rel="noopener"
-           href="https://2gis.kz/almaty/search/Sabroso%20%D0%9A%D0%B5%D1%80%D0%B5%D0%B9%20%D0%96%D0%B0%D0%BD%D0%B8%D0%B1%D0%B5%D0%BA%20%D1%85%D0%B0%D0%BD%D0%B4%D0%B0%D1%80%208?m=76.962332%2C43.237115%2F19.87">
-          Открыть карту
-        </a>
-
-        <div class="script sign">С уважением,<br>Болат - Зара</div>
-      </div>
-    </section>
-
   </main>
 
   <script>
-    /* кнопка "прокрутите вниз" -> RSVP */
     document.getElementById('scrollToRsvp')?.addEventListener('click', () => {
       document.getElementById('rsvp')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
-    /* КАЛЕНДАРЬ (Апрель 2026) — выделяем 11 */
+    /* КАЛЕНДАРЬ (Апрель 2026) + бабочка на 11 */
     (function buildCalendar(){
       const grid = document.getElementById('calendarGrid');
       const year = 2026, monthIndex = 3; // Apr
@@ -574,7 +585,7 @@
       const last  = new Date(year, monthIndex + 1, 0);
       const daysInMonth = last.getDate();
 
-      const jsDay = first.getDay(); // 0=Sun..6=Sat
+      const jsDay = first.getDay();
       const mondayFirst = (jsDay + 6) % 7;
 
       const totalCells = mondayFirst + daysInMonth;
@@ -590,7 +601,15 @@
           cell.textContent = '·';
         } else {
           cell.textContent = String(dayNum);
-          if(dayNum === selectedDay) cell.classList.add('sel');
+          if(dayNum === selectedDay){
+            cell.classList.add('sel');
+
+            const img = document.createElement('img');
+            img.src = './element_6.png';
+            img.alt = '';
+            img.className = 'butterfly-day';
+            cell.appendChild(img);
+          }
         }
         grid.appendChild(cell);
       }
@@ -661,10 +680,9 @@
 
     /*
       Google Apps Script (вставить в Apps Script)
-
       function doPost(e) {
         const SHEET_ID = "1FuukSHtopSmB9O97vWkRT6S3yv4caehpxQeg_QytRf4";
-        const SHEET_NAME = "Sheet1"; // если лист иначе назван — поменяйте
+        const SHEET_NAME = "Sheet1";
 
         const ss = SpreadsheetApp.openById(SHEET_ID);
         const sh = ss.getSheetByName(SHEET_NAME) || ss.getSheets()[0];
