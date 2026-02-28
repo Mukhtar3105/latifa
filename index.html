@@ -3,490 +3,699 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#f6eef1" />
-  <title>Латифа — 1 годик • Тұсаукесер</title>
+  <meta name="theme-color" content="#f7f1f4" />
+  <title>Латифа — 1 годик — Тұсаукесер</title>
 
-  <!-- Шрифты: близко к Вашему стилю (красивый скрипт + классический засечковый) -->
+  <!-- Шрифты (под “благородный” стиль, с кириллицей) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Marck+Script&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --ink:#3b3436;
-      --pink:#b88992;
-      --pink2:#c79aa2;
-      --card: rgba(255,255,255,.62);
-      --line: rgba(59,52,54,.35);
-      --shadow: 0 18px 50px rgba(0,0,0,.10);
+      --ink: #2f2f2f;
+      --muted: rgba(47,47,47,.72);
+      --rose: #b77b8a;
+      --roseDeep: #a86a79;
+      --paper: rgba(255,255,255,.62);
+      --stroke: rgba(47,47,47,.35);
+      --shadow: 0 16px 40px rgba(0,0,0,.08);
       --radius: 22px;
-      --max: 460px; /* чтобы на больших экранах выглядело как моб-лендинг */
+      --w: min(420px, 92vw);
     }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
     body{
       margin:0;
-      color:var(--ink);
-      font-family:"Cormorant Garamond", serif;
-      background:#f6eef1;
+      color: var(--ink);
+      font-family: "Cormorant Garamond", serif;
+      background: #f6f0f4;
       overflow-x:hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* фон как на картинках */
-    .bg{
-      position:fixed; inset:0;
-      background:
-        url("Background.png") center / cover no-repeat;
-      filter:saturate(1.02);
-      transform:translateZ(0);
-      z-index:-3;
+    /* Фон как на макете */
+    .page{
+      min-height: 100vh;
+      background: url("Background.png") center top / cover no-repeat fixed;
+      position: relative;
+      isolation: isolate;
     }
-    .veil{
-      position:fixed; inset:0;
-      background: radial-gradient(ellipse at center, rgba(255,255,255,.55), rgba(255,255,255,.25));
-      z-index:-2;
+
+    /* лёгкая “вуаль” */
+    .page::before{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(60% 40% at 50% 25%, rgba(255,255,255,.35), rgba(255,255,255,.10) 60%, rgba(255,255,255,.18));
       pointer-events:none;
+      z-index:0;
     }
 
-    /* декоративные png (Ваши element_1..4) */
-    .decor{position:fixed; inset:0; pointer-events:none; z-index:-1;}
-    .decor img{
-      position:absolute;
-      width:min(46vw, 240px);
-      height:auto;
-      opacity:.92;
-      filter: drop-shadow(0 12px 25px rgba(0,0,0,.10));
-      transform:translateZ(0);
-      animation: floaty 8s ease-in-out infinite;
-    }
-    .d1{left:-5vw; top:6vh; animation-duration:9s;}
-    .d2{right:-6vw; top:-2vh; width:min(55vw, 280px); animation-duration:10s;}
-    .d3{left:-7vw; bottom:-4vh; width:min(58vw, 300px); animation-duration:11s;}
-    .d4{right:-6vw; bottom:-3vh; width:min(55vw, 285px); animation-duration:12s;}
-
-    @keyframes floaty{
-      0%{transform:translate3d(0,0,0) rotate(-.5deg)}
-      50%{transform:translate3d(0,-10px,0) rotate(.6deg)}
-      100%{transform:translate3d(0,0,0) rotate(-.5deg)}
-    }
-
-    /* контейнер */
     .wrap{
-      width:min(var(--max), 100%);
-      margin:0 auto;
-      padding: clamp(18px, 4vw, 26px);
-      padding-bottom: 80px;
+      width: var(--w);
+      margin: 0 auto;
+      padding: 34px 0 64px;
+      position: relative;
+      z-index: 1;
     }
 
-    /* секции */
-    section{
-      margin: 18px 0 22px;
-      padding: 20px 18px;
-      border-radius: var(--radius);
-      background: var(--card);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255,255,255,.55);
+    /* Декор из ваших PNG */
+    .decor{
+      position:absolute;
+      pointer-events:none;
+      z-index: 0;
+      filter: drop-shadow(0 12px 22px rgba(0,0,0,.08));
+      opacity: .98;
+      transform: translateZ(0);
+    }
+    /* element_1: листья */
+    .d-leaf{ width: 240px; left:-95px; top: 18px; opacity:.7; }
+    /* element_2: цветок (гориз) */
+    .d-flowerWide{ width: 360px; right:-150px; top: 66px; opacity:.95; }
+    /* element_3: бабочки */
+    .d-butterflies{ width: 320px; left:-120px; top: 70px; opacity:.92; }
+    /* element_4: цветок (вертик) */
+    .d-flowerTall{ width: 300px; right:-135px; bottom: 120px; opacity:.92; }
+
+    /* Плавающая анимация декора */
+    @keyframes floaty {
+      0%{ transform: translate3d(0,0,0) rotate(0.001deg); }
+      50%{ transform: translate3d(0,-10px,0) rotate(0.001deg); }
+      100%{ transform: translate3d(0,0,0) rotate(0.001deg); }
+    }
+    .float{ animation: floaty 6.5s ease-in-out infinite; }
+    .float.slow{ animation-duration: 9.5s; }
+    .float.fast{ animation-duration: 5.4s; }
+
+    /* Блоки */
+    .section{
+      padding: 34px 0;
+      position: relative;
+    }
+
+    .center{ text-align:center; }
+
+    .script{
+      font-family: "Marck Script", cursive;
+      color: var(--roseDeep);
+      letter-spacing: .02em;
+    }
+
+    .titleTop{
+      margin: 14px 0 6px;
+      font-size: 52px;
+      line-height: 1;
+      font-weight: 400;
+    }
+
+    .subtitle{
+      margin: 0;
+      font-size: 26px;
+      letter-spacing: .14em;
+      color: var(--roseDeep);
+      text-transform: uppercase;
+    }
+
+    .subtitle.small{
+      font-size: 18px;
+      letter-spacing: .18em;
+      margin-top: 10px;
+    }
+
+    .lead{
+      margin: 22px auto 0;
+      max-width: 340px;
+      font-size: 19px;
+      line-height: 1.55;
+      color: var(--muted);
+      letter-spacing: .02em;
+    }
+
+    /* плавное появление */
+    .reveal{
       opacity:0;
       transform: translateY(14px);
-      transition: opacity .65s ease, transform .65s ease;
+      transition: opacity .8s ease, transform .8s ease;
     }
-    section.show{opacity:1; transform: translateY(0);}
+    .reveal.in{
+      opacity:1;
+      transform: translateY(0);
+    }
 
-    /* HERO */
-    .hero{
-      min-height: min(92vh, 860px);
+    /* “Прокрутите вниз” */
+    .scrollHint{
+      margin-top: 26px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      user-select:none;
+    }
+    .scrollHint .txt{
+      color: var(--roseDeep);
+      letter-spacing: .18em;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+    .scrollHint .miniButterfly{
+      width: 74px;
+      opacity: .95;
+      animation: floaty 3.4s ease-in-out infinite;
+    }
+
+    /* Карточка “стекло” */
+    .card{
+      background: var(--paper);
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px 18px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    /* Дата/время */
+    .meta{
+      margin-top: 14px;
+      font-size: 22px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .meta .strong{ font-weight: 600; }
+    .metaLine{ margin: 10px 0 0; color: var(--muted); font-size: 18px; letter-spacing: .08em; text-transform: uppercase; }
+
+    /* Календарь */
+    .calendar{
+      margin: 18px auto 0;
+      width: min(360px, 96%);
+      padding: 16px 12px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(47,47,47,.28);
+      background: rgba(255,255,255,.45);
+    }
+    .calDow{
+      display:grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin: 0 6px 8px;
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(47,47,47,.62);
+    }
+    .calGrid{
+      display:grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px 6px;
+      padding: 0 6px 4px;
+      font-size: 16px;
+      color: rgba(47,47,47,.88);
+    }
+    .day{
+      height: 32px;
       display:flex;
-      flex-direction:column;
       align-items:center;
       justify-content:center;
-      text-align:center;
-      background: transparent;
-      box-shadow:none;
-      border:none;
-      backdrop-filter:none;
-      padding-top: 8vh;
-      padding-bottom: 4vh;
-      opacity:1;
-      transform:none;
+      border-radius: 10px;
+      position: relative;
     }
-    .name{
-      font-family:"Great Vibes", cursive;
-      font-size: clamp(52px, 12vw, 78px);
-      color: var(--pink);
-      letter-spacing:.5px;
-      margin: 0 0 8px;
+    .day.muted{ color: rgba(47,47,47,.38); }
+    .day.selected{
+      color: rgba(47,47,47,.9);
+      font-weight: 600;
     }
-    .sub{
-      font-size: clamp(20px, 5.4vw, 28px);
-      letter-spacing: .18em;
+    .day.selected::before{
+      content:"";
+      position:absolute;
+      inset:-4px;
+      border-radius: 12px;
+      background: rgba(183,123,138,.16);
+      border: 1px solid rgba(183,123,138,.35);
+      box-shadow: 0 10px 22px rgba(183,123,138,.12);
+      z-index:-1;
+    }
+    .day.selected::after{
+      content:"";
+      position:absolute;
+      width: 34px;
+      height: 34px;
+      right: -10px;
+      bottom: -12px;
+      background: url("element_3.png") center / cover no-repeat;
+      opacity: .45;
+      transform: rotate(-8deg);
+      pointer-events:none;
+      filter: drop-shadow(0 8px 14px rgba(0,0,0,.10));
+    }
+
+    /* Локация */
+    .placeTitle{
+      margin: 0 0 10px;
+      font-size: 44px;
+      line-height: 1.05;
+    }
+    .placeText{
+      margin: 0 auto;
+      max-width: 340px;
       text-transform: uppercase;
-      color: var(--pink);
-      margin: 0;
+      letter-spacing: .14em;
+      font-size: 18px;
+      line-height: 1.55;
+      color: rgba(47,47,47,.78);
     }
-    .sub2{
-      margin-top: 10px;
-      font-size: clamp(18px, 5vw, 26px);
+    .btn{
+      margin: 18px auto 0;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 16px 26px;
+      min-width: 240px;
+      border-radius: 999px;
+      background: rgba(183,123,138,.78);
+      color: rgba(255,255,255,.92);
+      text-decoration:none;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-size: 16px;
+      border: 1px solid rgba(183,123,138,.65);
+      box-shadow: 0 16px 36px rgba(183,123,138,.18);
+      transition: transform .12s ease, filter .12s ease, background .12s ease;
+    }
+    .btn:active{ transform: translateY(1px) scale(.99); }
+    .btn:hover{ filter: brightness(1.02); background: rgba(183,123,138,.86); }
+
+    /* RSVP */
+    .rsvpTitle{
+      margin: 0 0 14px;
       letter-spacing: .14em;
       text-transform: uppercase;
-      color: var(--pink);
+      font-size: 24px;
+      color: rgba(47,47,47,.78);
+      line-height:1.35;
     }
-
-    /* “прокрутите вниз” + анимация */
-    .scrollHint{
-      margin-top: 18vh;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:10px;
-      color: var(--pink);
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      font-size: 16px;
-      opacity:.95;
-    }
-    .butter{
-      width:56px; height:56px;
-      background: url("element_3.png") center/contain no-repeat;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,.12));
-      animation: bounce 1.6s ease-in-out infinite;
-    }
-    @keyframes bounce{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-10px)}
-    }
-
-    /* заголовки */
-    .hScript{
-      font-family:"Great Vibes", cursive;
-      font-size: clamp(34px, 8vw, 48px);
-      color: var(--pink);
-      margin: 0 0 8px;
-      text-align:center;
-    }
-    .hCaps{
-      text-align:center;
-      margin: 0 0 14px;
-      font-size: 20px;
-      letter-spacing:.12em;
-      text-transform: uppercase;
-    }
-    .text{
-      text-align:center;
-      font-size: 20px;
-      line-height: 1.4;
-      letter-spacing:.02em;
-    }
-
-    /* RSVP форма */
-    .form{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      margin-top: 14px;
-    }
-    .input{
-      width:100%;
+    .field{
+      width: 100%;
+      margin: 12px 0 0;
       padding: 14px 16px;
       border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(47,47,47,.35);
+      background: rgba(255,255,255,.35);
+      outline: none;
+      font-family: "Cormorant Garamond", serif;
       font-size: 18px;
-      outline:none;
-    }
-    .radios{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      margin: 4px 0 6px;
-      font-size: 20px;
-      letter-spacing:.06em;
+      letter-spacing: .06em;
       text-transform: uppercase;
-      color: rgba(59,52,54,.85);
+      color: rgba(47,47,47,.82);
     }
-    .radioRow{
+    .field::placeholder{ color: rgba(47,47,47,.45); }
+
+    .choices{
+      margin-top: 14px;
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align:left;
+      padding: 0 8px;
+    }
+
+    .choice{
       display:flex;
       align-items:center;
-      gap:10px;
-    }
-    .radioRow input{width:20px;height:20px}
-    .btn{
-      margin-top: 6px;
-      width:100%;
-      padding: 14px 18px;
-      border:none;
-      border-radius: 999px;
-      background: linear-gradient(180deg, var(--pink2), var(--pink));
-      color:#fff;
-      font-size: 20px;
-      letter-spacing:.14em;
+      gap: 12px;
+      font-size: 18px;
+      letter-spacing: .06em;
       text-transform: uppercase;
-      box-shadow: 0 16px 35px rgba(184,137,146,.35);
-      cursor:pointer;
-      transition: transform .12s ease, filter .12s ease;
-    }
-    .btn:active{transform:scale(.99); filter:saturate(1.05)}
-    .small{
-      text-align:center;
-      font-size: 16px;
-      opacity:.9;
-      margin-top: 10px;
+      color: rgba(47,47,47,.72);
     }
 
-    /* таймер */
-    .timerWrap{
-      margin-top: 18px;
-      text-align:center;
+    .choice input{
+      width: 20px;
+      height: 20px;
+      accent-color: var(--roseDeep);
     }
-    .timerTitle{
+
+    .send{
+      width: 100%;
+      margin-top: 16px;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Таймер как “табло” */
+    .countWrap{
+      margin-top: 28px;
+    }
+    .countTitle{
+      margin: 0 0 10px;
       font-size: 22px;
-      letter-spacing:.18em;
+      letter-spacing: .14em;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      color: rgba(47,47,47,.62);
     }
-    .timer{
-      display:flex;
-      justify-content:center;
-      gap:10px;
-      flex-wrap:wrap;
+    .counter{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      justify-items: center;
+      align-items: start;
     }
-    .tBox{
-      width: 78px;
+    .tile{
+      width: 100%;
       border-radius: 14px;
-      background: rgba(184,137,146,.85);
-      color:#fff;
-      padding: 10px 8px 8px;
-      box-shadow: 0 14px 30px rgba(184,137,146,.28);
+      background: rgba(183,123,138,.62);
+      border: 1px solid rgba(183,123,138,.55);
+      color: rgba(255,255,255,.92);
+      box-shadow: 0 18px 34px rgba(183,123,138,.18);
+      padding: 10px 0 8px;
     }
-    .tNum{
+    .num{
       font-size: 34px;
-      line-height:1;
-      letter-spacing:.06em;
+      line-height: 1;
+      letter-spacing: .10em;
       font-variant-numeric: tabular-nums;
     }
-    .tLbl{
+    .lab{
       margin-top: 6px;
-      font-size: 13px;
-      letter-spacing:.18em;
+      font-size: 14px;
+      letter-spacing: .16em;
       text-transform: uppercase;
-      opacity:.95;
-    }
-
-    /* адрес + кнопка карты */
-    .mapBtn{
-      display:inline-block;
-      margin-top: 10px;
-      padding: 14px 22px;
-      border-radius: 999px;
-      background: rgba(184,137,146,.9);
-      color:#fff;
-      text-decoration:none;
-      letter-spacing:.14em;
-      text-transform: uppercase;
-      font-size: 16px;
-      box-shadow: 0 16px 35px rgba(184,137,146,.26);
-    }
-
-    /* подпись */
-    .sign{
-      font-family:"Great Vibes", cursive;
-      color: var(--pink);
-      font-size: clamp(34px, 8vw, 52px);
+      color: rgba(47,47,47,.68);
       text-align:center;
-      margin-top: 6px;
     }
 
-    /* безопасные отступы под “чёлку” */
-    .safeTop{padding-top: env(safe-area-inset-top);}
-    .safeBottom{padding-bottom: env(safe-area-inset-bottom);}
+    .sign{
+      margin-top: 26px;
+      font-size: 54px;
+      line-height: 1;
+    }
+    .signSub{
+      margin: 6px 0 0;
+      color: rgba(47,47,47,.62);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
 
-    /* чуть плотнее на маленьких экранах */
-    @media (max-width:360px){
-      .tBox{width:72px}
-      .text{font-size:19px}
-      .radios{font-size:18px}
+    .dividerSpace{ height: 18px; }
+
+    /* Подгон под очень маленькие экраны */
+    @media (max-width: 360px){
+      .titleTop{ font-size: 46px; }
+      .subtitle{ font-size: 22px; }
+      .placeTitle{ font-size: 38px; }
+      .num{ font-size: 30px; }
+      .btn{ min-width: 220px; }
     }
   </style>
 </head>
 
-<body class="safeTop safeBottom">
-  <div class="bg"></div>
-  <div class="veil"></div>
+<body>
+  <div class="page">
+    <!-- ДЕКОР -->
+    <img class="decor d-leaf float slow" src="element_1.png" alt="" />
+    <img class="decor d-flowerWide float" src="element_2.png" alt="" />
+    <img class="decor d-butterflies float fast" src="element_3.png" alt="" />
+    <img class="decor d-flowerTall float slow" src="element_4.png" alt="" />
 
-  <!-- Ваши элементы -->
-  <div class="decor" aria-hidden="true">
-    <img class="d1" src="element_1.png" alt="">
-    <img class="d2" src="element_2.png" alt="">
-    <img class="d3" src="element_4.png" alt="">
-    <img class="d4" src="element_3.png" alt="">
-  </div>
+    <main class="wrap">
 
-  <main class="wrap">
-    <!-- HERO -->
-    <section class="hero">
-      <h1 class="name">Латифа</h1>
-      <p class="sub">1 ГОДИК</p>
-      <p class="sub2">ТҰСАУКЕСЕР</p>
+      <!-- HERO -->
+      <section class="section center reveal">
+        <div class="titleTop script">Латифа</div>
+        <p class="subtitle">1 годик</p>
+        <p class="subtitle" style="margin-top:14px;">Тұсаукесер</p>
 
-      <div class="scrollHint" onclick="document.getElementById('invite').scrollIntoView({behavior:'smooth'})">
-        <div>ПРОКРУТИТЕ ВНИЗ</div>
-        <div class="butter" aria-hidden="true"></div>
-      </div>
-    </section>
+        <div class="scrollHint" role="note" aria-label="Прокрутите вниз">
+          <div class="txt">Прокрутите вниз</div>
+          <!-- маленькая бабочка (берём из element_3.png как декор) -->
+          <img class="miniButterfly" src="element_3.png" alt="" />
+        </div>
+      </section>
 
-    <!-- Текст приглашения -->
-    <section id="invite" class="reveal">
-      <div class="hScript">Дорогие гости!</div>
-      <div class="text">
-        С радостью приглашаем Вас<br>
-        на первый годик нашей доченьки<br>
-        и обряд Тұсаукесер!<br>
-        Будем рады разделить с Вами этот день!
-      </div>
-    </section>
+      <!-- ПРИГЛАШЕНИЕ -->
+      <section class="section center reveal">
+        <div class="script" style="font-size:44px; line-height:1.05; margin-bottom:8px;">Дорогие гости!</div>
+        <p class="lead">
+          С радостью приглашаем Вас на первый годик нашей доченьки и обряд тұсаукесер!
+          Будем рады разделить с Вами этот день.
+        </p>
+      </section>
 
-    <!-- Дата -->
-    <section class="reveal">
-      <div class="hScript">Дата торжества:</div>
-      <div class="hCaps">12 АПРЕЛЯ 2026 ГОДА<br>ВРЕМЯ 14:00</div>
-      <div class="text" style="opacity:.95">
-        <span style="letter-spacing:.22em; text-transform:uppercase;">ПН&nbsp;&nbsp;ВТ&nbsp;&nbsp;СР&nbsp;&nbsp;ЧТ&nbsp;&nbsp;ПТ&nbsp;&nbsp;СБ&nbsp;&nbsp;ВС</span><br>
-        <span style="display:inline-block;margin-top:12px;letter-spacing:.10em; opacity:.92">
-          1&nbsp;&nbsp;2&nbsp;&nbsp;3&nbsp;&nbsp;4&nbsp;&nbsp;5<br>
-          6&nbsp;&nbsp;7&nbsp;&nbsp;8&nbsp;&nbsp;9&nbsp;&nbsp;10&nbsp;&nbsp;11&nbsp;&nbsp;<b style="color:var(--pink)">12</b><br>
-          13&nbsp;&nbsp;14&nbsp;&nbsp;15&nbsp;&nbsp;16&nbsp;&nbsp;17&nbsp;&nbsp;18&nbsp;&nbsp;19<br>
-          20&nbsp;&nbsp;21&nbsp;&nbsp;22&nbsp;&nbsp;23&nbsp;&nbsp;24&nbsp;&nbsp;25&nbsp;&nbsp;26<br>
-          27&nbsp;&nbsp;28&nbsp;&nbsp;29&nbsp;&nbsp;30
-        </span>
-      </div>
-    </section>
+      <!-- ДАТА + КАЛЕНДАРЬ -->
+      <section class="section center reveal">
+        <div class="script" style="font-size:44px; line-height:1.05; margin-bottom:10px;">Дата торжества:</div>
+        <div class="meta">
+          <span class="strong">12 апреля 2026 года</span><br>
+          <span class="metaLine">время 14:00</span>
+        </div>
 
-    <!-- Место -->
-    <section class="reveal">
-      <div class="hScript">Место проведения:</div>
-      <div class="hCaps">
-        ГОРОД АЛМАТЫ<br>
-        УЛИЦА КЕРЕЙ – ЖАНИБЕК ХАНДАР, 8<br>
-        РЕСТОРАН “SABROSO”
-      </div>
-      <div class="text">Для Вашего удобства можете воспользоваться картой</div>
+        <div class="calendar" aria-label="Календарь">
+          <div class="calDow">
+            <div>пн</div><div>вт</div><div>ср</div><div>чт</div><div>пт</div><div>сб</div><div>вс</div>
+          </div>
+          <div id="calGrid" class="calGrid"></div>
+        </div>
+      </section>
 
-      <!-- Замените ссылку на свою (Google Maps / 2GIS) -->
-      <div style="text-align:center">
-        <a class="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Sabroso%2C%20Kerei-Zhanibek%20khandar%208%2C%20Almaty" target="_blank" rel="noopener">
+      <!-- RSVP + ТАЙМЕР -->
+      <section class="section center reveal">
+        <div class="card">
+          <div class="rsvpTitle">Подтвердите, пожалуйста, своё присутствие:</div>
+
+          <form id="rsvpForm" autocomplete="on">
+            <input class="field" type="text" name="name" placeholder="ВАШЕ ИМЯ" required />
+
+            <div class="choices" role="radiogroup" aria-label="Вариант участия">
+              <label class="choice">
+                <input type="radio" name="status" value="Обязательно приду" required />
+                ОБЯЗАТЕЛЬНО ПРИДУ
+              </label>
+              <label class="choice">
+                <input type="radio" name="status" value="Приду со второй половинкой" />
+                ПРИДУ СО ВТОРОЙ ПОЛОВИНКОЙ
+              </label>
+              <label class="choice">
+                <input type="radio" name="status" value="Не смогу присутствовать" />
+                НЕ СМОГУ ПРИСУТСТВОВАТЬ
+              </label>
+            </div>
+
+            <button class="btn send" type="submit">ОТПРАВИТЬ</button>
+
+            <div id="formMsg" class="signSub" style="margin-top:12px;"></div>
+          </form>
+
+          <div class="countWrap">
+            <div class="countTitle">До торжества:</div>
+            <div class="counter" aria-label="Обратный отсчёт">
+              <div style="width:100%;">
+                <div class="tile"><div id="dd" class="num">00</div></div>
+                <div class="lab">ДНЕЙ</div>
+              </div>
+              <div style="width:100%;">
+                <div class="tile"><div id="hh" class="num">00</div></div>
+                <div class="lab">ЧАСОВ</div>
+              </div>
+              <div style="width:100%;">
+                <div class="tile"><div id="mm" class="num">00</div></div>
+                <div class="lab">МИНУТ</div>
+              </div>
+              <div style="width:100%;">
+                <div class="tile"><div id="ss" class="num">00</div></div>
+                <div class="lab">СЕКУНД</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- МЕСТО -->
+      <section class="section center reveal">
+        <div class="script placeTitle">Место проведения:</div>
+
+        <p class="placeText">
+          ГОРОД АЛМАТЫ<br>
+          УЛИЦА КЕРЕЙ — ЖАНИБЕК ХАНДАР, 8<br>
+          РЕСТОРАН “SABROSO”
+        </p>
+
+        <div class="dividerSpace"></div>
+
+        <p class="placeText" style="font-size:16px; max-width: 320px;">
+          ДЛЯ ВАШЕГО УДОБСТВА МОЖЕТЕ ВОСПОЛЬЗОВАТЬСЯ КАРТОЙ
+        </p>
+
+        <!-- Вставьте сюда Вашу ссылку на 2GIS/Google Maps -->
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Sabroso%20Алматы%20Керей%20Жанибек%20Хандар%208" target="_blank" rel="noopener">
           ОТКРЫТЬ КАРТУ
         </a>
-      </div>
-    </section>
 
-    <!-- RSVP + таймер -->
-    <section class="reveal">
-      <div class="hCaps">ПОДТВЕРДИТЕ, ПОЖАЛУЙСТА, СВОЁ ПРИСУТСТВИЕ:</div>
+        <div class="script sign">С уважением,</div>
+        <div class="script" style="font-size:56px; margin-top:6px;">Болат — Зара</div>
+      </section>
 
-      <form id="rsvpForm" class="form">
-        <input class="input" name="name" id="guestName" placeholder="ВАШЕ ИМЯ" required>
-
-        <div class="radios" role="radiogroup" aria-label="Ответ">
-          <label class="radioRow"><input type="radio" name="answer" value="Обязательно приду" required> ОБЯЗАТЕЛЬНО ПРИДУ</label>
-          <label class="radioRow"><input type="radio" name="answer" value="Приду со второй половинкой"> ПРИДУ СО ВТОРОЙ ПОЛОВИНКОЙ</label>
-          <label class="radioRow"><input type="radio" name="answer" value="Не смогу присутствовать"> НЕ СМОГУ ПРИСУТСТВОВАТЬ</label>
-        </div>
-
-        <button class="btn" type="submit">ОТПРАВИТЬ</button>
-        <div id="formMsg" class="small"></div>
-      </form>
-
-      <div class="timerWrap" aria-live="polite">
-        <div class="timerTitle">ДО ТОРЖЕСТВА:</div>
-        <div class="timer">
-          <div class="tBox"><div class="tNum" id="d">00</div><div class="tLbl">ДНЕЙ</div></div>
-          <div class="tBox"><div class="tNum" id="h">00</div><div class="tLbl">ЧАСОВ</div></div>
-          <div class="tBox"><div class="tNum" id="m">00</div><div class="tLbl">МИНУТ</div></div>
-          <div class="tBox"><div class="tNum" id="s">00</div><div class="tLbl">СЕКУНД</div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Подпись -->
-    <section class="reveal">
-      <div class="hScript">С уважением,</div>
-      <div class="sign">Болат – Зара</div>
-    </section>
-  </main>
+    </main>
+  </div>
 
   <script>
-    // ====== Плавное появление секций ======
-    const io = new IntersectionObserver((entries)=>{
-      for (const e of entries){
-        if (e.isIntersecting) e.target.classList.add("show");
+    // =========================
+    // 1) ПЛАВНОЕ ПОЯВЛЕНИЕ СЕКЦИЙ
+    // =========================
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) e.target.classList.add('in');
       }
-    }, {threshold: 0.12});
-    document.querySelectorAll(".reveal").forEach(s=>io.observe(s));
+    }, { threshold: 0.12 });
 
-    // ====== Таймер (Алматы +05:00). Дата: 12.04.2026 14:00 ======
-    // Важно: используем ISO со смещением +05:00
-    const target = new Date("2026-04-12T14:00:00+05:00").getTime();
-    const pad2 = n => String(n).padStart(2,"0");
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // =========================
+    // 2) КАЛЕНДАРЬ (Апрель 2026, выделить 12)
+    // =========================
+    // Неделя: ПН..ВС
+    function renderCalendar(year, monthIndex0, selectedDay){
+      const grid = document.getElementById('calGrid');
+      grid.innerHTML = '';
+
+      const first = new Date(year, monthIndex0, 1);
+      const last = new Date(year, monthIndex0 + 1, 0);
+      const daysInMonth = last.getDate();
+
+      // JS: 0=ВС..6=СБ, надо сместить под ПН
+      const jsDow = first.getDay();               // 0..6
+      const startOffset = (jsDow + 6) % 7;        // ПН=0..ВС=6
+
+      // Пустые клетки до 1 числа
+      for (let i = 0; i < startOffset; i++){
+        const d = document.createElement('div');
+        d.className = 'day muted';
+        d.textContent = '';
+        grid.appendChild(d);
+      }
+
+      for (let day = 1; day <= daysInMonth; day++){
+        const d = document.createElement('div');
+        d.className = 'day';
+        d.textContent = String(day);
+
+        if (day === selectedDay) d.classList.add('selected');
+        grid.appendChild(d);
+      }
+
+      // добить до ровной сетки (чтобы красиво смотрелось)
+      const total = startOffset + daysInMonth;
+      const remain = (7 - (total % 7)) % 7;
+      for (let i = 0; i < remain; i++){
+        const d = document.createElement('div');
+        d.className = 'day muted';
+        d.textContent = '';
+        grid.appendChild(d);
+      }
+    }
+
+    renderCalendar(2026, 3, 12); // 3 = апрель
+
+    // =========================
+    // 3) ОБРАТНЫЙ ОТСЧЁТ (12 апреля 2026 14:00, Алматы +05)
+    // =========================
+    // ВНИМАНИЕ: GitHub Pages не знает Ваш часовой пояс. Сделаем расчёт через "Asia/Almaty" с Intl.
+    const targetISO = "2026-04-12T14:00:00";
+    const targetTz = "Asia/Almaty";
+
+    function getTimeInTz(date, timeZone){
+      // Возвращаем timestamp, соответствующий локальному времени в timeZone
+      const parts = new Intl.DateTimeFormat('en-US', {
+        timeZone,
+        year:'numeric', month:'2-digit', day:'2-digit',
+        hour:'2-digit', minute:'2-digit', second:'2-digit',
+        hour12:false
+      }).formatToParts(date).reduce((acc,p)=> (acc[p.type]=p.value, acc), {});
+      const asISO = `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}:${parts.second}`;
+      return new Date(asISO).getTime();
+    }
 
     function tick(){
-      const now = Date.now();
-      let diff = Math.max(0, target - now);
+      const now = new Date();
+      // текущее время в Алматы
+      const nowAlmatyMs = getTimeInTz(now, targetTz);
 
-      const sec = Math.floor(diff/1000);
-      const days = Math.floor(sec/86400);
-      const hours = Math.floor((sec%86400)/3600);
-      const mins = Math.floor((sec%3600)/60);
-      const s = sec%60;
+      // цель (интерпретируем как время Алматы)
+      const targetMs = new Date(targetISO).getTime();
 
-      document.getElementById("d").textContent = pad2(days);
-      document.getElementById("h").textContent = pad2(hours);
-      document.getElementById("m").textContent = pad2(mins);
-      document.getElementById("s").textContent = pad2(s);
+      let diff = targetMs - nowAlmatyMs;
+      if (diff < 0) diff = 0;
+
+      const s = Math.floor(diff/1000);
+      const days = Math.floor(s / 86400);
+      const hours = Math.floor((s % 86400) / 3600);
+      const mins = Math.floor((s % 3600) / 60);
+      const secs = s % 60;
+
+      const pad = (n)=> String(n).padStart(2,'0');
+      document.getElementById('dd').textContent = pad(days);
+      document.getElementById('hh').textContent = pad(hours);
+      document.getElementById('mm').textContent = pad(mins);
+      document.getElementById('ss').textContent = pad(secs);
     }
     tick();
     setInterval(tick, 1000);
 
-    // ====== Отправка RSVP ======
-    // GitHub Pages НЕ может "сохранять" данные сам.
-    // Поэтому отправляем в Google Sheets через Apps Script (URL вставить ниже).
-    const APPS_SCRIPT_URL = ""; // <-- ВСТАВЬТЕ СЮДА URL веб-приложения Apps Script
+    // =========================
+    // 4) RSVP: КУДА СОХРАНЯЮТСЯ ДАННЫЕ И КАК ИЗМЕНИТЬ
+    // =========================
+    // По умолчанию (без сервера) — localStorage на устройстве пользователя.
+    // Если хотите, чтобы попадало к Вам в таблицу/БД — вставьте URL приёмника (Google Apps Script / Firebase).
+    const FORM_ACTION_URL = ""; // <-- сюда вставьте URL (если будет). Если пусто — сохраняем локально.
 
-    const form = document.getElementById("rsvpForm");
-    const msg = document.getElementById("formMsg");
+    const form = document.getElementById('rsvpForm');
+    const msg = document.getElementById('formMsg');
 
-    form.addEventListener("submit", async (e)=>{
+    function saveLocal(payload){
+      const key = "latifa_rsvp";
+      const list = JSON.parse(localStorage.getItem(key) || "[]");
+      list.push(payload);
+      localStorage.setItem(key, JSON.stringify(list));
+    }
+
+    async function sendRemote(payload){
+      const res = await fetch(FORM_ACTION_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error("remote_failed");
+    }
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      msg.textContent = "Отправляем...";
+      msg.textContent = "";
 
-      const name = document.getElementById("guestName").value.trim();
-      const answer = form.answer.value;
+      const fd = new FormData(form);
+      const payload = {
+        name: String(fd.get("name") || "").trim(),
+        status: String(fd.get("status") || "").trim(),
+        createdAt: new Date().toISOString()
+      };
 
-      // Если Apps Script не задан — хотя бы сохраняем локально в телефоне (localStorage)
-      // (это только на устройстве гостя, НЕ общий список!)
-      if (!APPS_SCRIPT_URL){
-        const data = {name, answer, at: new Date().toISOString()};
-        localStorage.setItem("rsvp_last", JSON.stringify(data));
-        msg.textContent = "Готово! (сохранено на устройстве). Чтобы сохранялось в общий список — подключим Google Таблицу.";
-        form.reset();
+      if (!payload.name || !payload.status){
+        msg.textContent = "Пожалуйста, заполните имя и выберите вариант.";
         return;
       }
 
       try{
-        const payload = { name, answer, page: location.href, ts: new Date().toISOString() };
-
-        const res = await fetch(APPS_SCRIPT_URL, {
-          method: "POST",
-          mode: "no-cors",
-          headers: {"Content-Type":"application/json"},
-          body: JSON.stringify(payload)
-        });
-
-        // mode:no-cors не дает прочитать ответ, поэтому просто показываем успех
-        msg.textContent = "Спасибо! Ответ отправлен ✅";
+        if (FORM_ACTION_URL){
+          await sendRemote(payload);
+          msg.textContent = "Спасибо! Ответ отправлен.";
+        } else {
+          saveLocal(payload);
+          msg.textContent = "Спасибо! Ответ сохранён (на этом устройстве).";
+        }
         form.reset();
-      }catch(err){
-        msg.textContent = "Не получилось отправить. Попробуйте еще раз.";
+      } catch(err){
+        msg.textContent = "Не удалось отправить. Попробуйте ещё раз.";
       }
     });
   </script>
