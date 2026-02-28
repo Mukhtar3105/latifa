@@ -3,701 +3,653 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#f7f1f4" />
-  <title>Латифа — 1 годик — Тұсаукесер</title>
+  <title>Латифа — 1 годик • Тұсаукесер</title>
 
-  <!-- Шрифты (под “благородный” стиль, с кириллицей) -->
+  <!-- Elegant fonts (closest look) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Marck+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --ink: #2f2f2f;
-      --muted: rgba(47,47,47,.72);
-      --rose: #b77b8a;
-      --roseDeep: #a86a79;
-      --paper: rgba(255,255,255,.62);
-      --stroke: rgba(47,47,47,.35);
-      --shadow: 0 16px 40px rgba(0,0,0,.08);
-      --radius: 22px;
-      --w: min(420px, 92vw);
+      --w: min(430px, 100%);
+      --text: #2b2b2b;
+      --muted: rgba(43,43,43,.72);
+      --rose: #b17a86;
+      --roseDeep: #a46a77;
+      --card: rgba(255,255,255,.62);
+      --stroke: rgba(43,43,43,.55);
+      --shadow: 0 18px 50px rgba(0,0,0,.10);
     }
 
-    *{ box-sizing:border-box; }
+    *{ box-sizing: border-box; }
     html, body{ height:100%; }
     body{
       margin:0;
-      color: var(--ink);
+      color: var(--text);
       font-family: "Cormorant Garamond", serif;
-      background: #f6f0f4;
-      overflow-x:hidden;
+      background:
+        url("./Background.png") center top / cover no-repeat fixed;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      text-rendering: geometricPrecision;
+      overflow-x:hidden;
     }
 
-    /* Фон как на макете */
-    .page{
-      min-height: 100vh;
-      background: url("Background.png") center top / cover no-repeat fixed;
-      position: relative;
-      isolation: isolate;
-    }
-
-    /* лёгкая “вуаль” */
-    .page::before{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(60% 40% at 50% 25%, rgba(255,255,255,.35), rgba(255,255,255,.10) 60%, rgba(255,255,255,.18));
-      pointer-events:none;
-      z-index:0;
-    }
-
+    /* Wrapper */
     .wrap{
       width: var(--w);
       margin: 0 auto;
-      padding: 34px 0 64px;
+      padding: 34px 14px 64px;
       position: relative;
       z-index: 1;
     }
 
-    /* Декор из ваших PNG */
+    /* Decorative images */
     .decor{
       position:absolute;
       pointer-events:none;
       z-index: 0;
-      filter: drop-shadow(0 12px 22px rgba(0,0,0,.08));
-      opacity: .98;
+      filter: drop-shadow(0 12px 22px rgba(0,0,0,.07));
+      opacity: .90;
       transform: translateZ(0);
     }
-    /* element_1: листья */
-    .d-leaf{ width: 240px; left:-95px; top: 18px; opacity:.7; }
-    /* element_2: цветок (гориз) */
-    .d-flowerWide{ width: 360px; right:-150px; top: 66px; opacity:.95; }
-    /* element_3: бабочки */
-    .d-butterflies{ width: 320px; left:-120px; top: 70px; opacity:.92; }
-    /* element_4: цветок (вертик) */
-    .d-flowerTall{ width: 300px; right:-135px; bottom: 120px; opacity:.92; }
-
-    /* Плавающая анимация декора */
-    @keyframes floaty {
-      0%{ transform: translate3d(0,0,0) rotate(0.001deg); }
-      50%{ transform: translate3d(0,-10px,0) rotate(0.001deg); }
-      100%{ transform: translate3d(0,0,0) rotate(0.001deg); }
+    .d-leaf{
+      width: clamp(190px, 38vw, 260px);
+      left: -120px;
+      top: 10px;
+      opacity: .55;
     }
-    .float{ animation: floaty 6.5s ease-in-out infinite; }
-    .float.slow{ animation-duration: 9.5s; }
-    .float.fast{ animation-duration: 5.4s; }
-
-    /* Блоки */
-    .section{
-      padding: 34px 0;
-      position: relative;
+    .d-flowerWide{
+      width: clamp(280px, 60vw, 420px);
+      right: -180px;
+      top: 40px;
+      opacity: .80;
     }
-
-    .center{ text-align:center; }
-
-    .script{
-      font-family: "Marck Script", cursive;
-      color: var(--roseDeep);
-      letter-spacing: .02em;
+    .d-butterflies{
+      width: clamp(240px, 52vw, 360px);
+      left: -170px;
+      top: 120px;
+      opacity: .70;
+    }
+    .d-flowerTall{
+      width: clamp(240px, 54vw, 340px);
+      right: -170px;
+      bottom: 90px;
+      opacity: .85;
     }
 
-    .titleTop{
-      margin: 14px 0 6px;
-      font-size: 52px;
-      line-height: 1;
-      font-weight: 400;
+    @media (max-width: 420px){
+      .d-leaf{ left: -140px; }
+      .d-flowerWide{ right: -210px; }
+      .d-butterflies{ left: -200px; }
+      .d-flowerTall{ right: -200px; }
     }
 
-    .subtitle{
-      margin: 0;
-      font-size: 26px;
-      letter-spacing: .14em;
-      color: var(--roseDeep);
-      text-transform: uppercase;
-    }
-
-    .subtitle.small{
-      font-size: 18px;
-      letter-spacing: .18em;
-      margin-top: 10px;
-    }
-
-    .lead{
-      margin: 22px auto 0;
-      max-width: 340px;
-      font-size: 19px;
-      line-height: 1.55;
-      color: var(--muted);
-      letter-spacing: .02em;
-    }
-
-    /* плавное появление */
+    /* Simple reveal */
     .reveal{
-      opacity:0;
-      transform: translateY(14px);
-      transition: opacity .8s ease, transform .8s ease;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .9s ease, transform .9s ease;
+      will-change: opacity, transform;
     }
-    .reveal.in{
-      opacity:1;
+    .reveal.show{
+      opacity: 1;
       transform: translateY(0);
     }
 
-    /* “Прокрутите вниз” */
-    .scrollHint{
-      margin-top: 26px;
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      user-select:none;
+    /* Floating butterfly center */
+    .centerButterfly{
+      width: 94px;
+      height: auto;
+      display:block;
+      margin: 18px auto 26px;
+      animation: floaty 4.8s ease-in-out infinite;
+      filter: drop-shadow(0 12px 18px rgba(0,0,0,.12));
     }
-    .scrollHint .txt{
-      color: var(--roseDeep);
-      letter-spacing: .18em;
-      font-size: 16px;
-      text-transform: uppercase;
-    }
-    .scrollHint .miniButterfly{
-      width: 74px;
-      opacity: .95;
-      animation: floaty 3.4s ease-in-out infinite;
+    @keyframes floaty{
+      0%,100%{ transform: translateY(0) scale(1); }
+      50%{ transform: translateY(-10px) scale(1.02); }
     }
 
-    /* Карточка “стекло” */
-    .card{
-      background: var(--paper);
-      border: 1px solid rgba(255,255,255,.55);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 22px 18px;
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+    /* Typography */
+    .center{ text-align:center; }
+    .script{
+      font-family: "Great Vibes", cursive;
+      color: var(--rose);
+      letter-spacing: .2px;
+    }
+    .titleName{
+      font-size: clamp(54px, 10vw, 68px);
+      line-height: 1.0;
+      margin-top: 22px;
+      margin-bottom: 8px;
+    }
+    .titleSmall{
+      font-size: 28px;
+      letter-spacing: .14em;
+      color: var(--rose);
+      margin: 12px 0 10px;
+    }
+    .titleKz{
+      font-size: 28px;
+      letter-spacing: .14em;
+      color: var(--rose);
+      margin: 0 0 26px;
     }
 
-    /* Дата/время */
-    .meta{
-      margin-top: 14px;
-      font-size: 22px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-    .meta .strong{ font-weight: 600; }
-    .metaLine{ margin: 10px 0 0; color: var(--muted); font-size: 18px; letter-spacing: .08em; text-transform: uppercase; }
-
-    /* Календарь */
-    .calendar{
-      margin: 18px auto 0;
-      width: min(360px, 96%);
-      padding: 16px 12px 14px;
-      border-radius: 18px;
-      border: 1px solid rgba(47,47,47,.28);
-      background: rgba(255,255,255,.45);
-    }
-    .calDow{
-      display:grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 6px;
-      margin: 0 6px 8px;
-      font-size: 13px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: rgba(47,47,47,.62);
-    }
-    .calGrid{
-      display:grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 8px 6px;
-      padding: 0 6px 4px;
-      font-size: 16px;
-      color: rgba(47,47,47,.88);
-    }
-    .day{
-      height: 32px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      border-radius: 10px;
-      position: relative;
-    }
-    .day.muted{ color: rgba(47,47,47,.38); }
-    .day.selected{
-      color: rgba(47,47,47,.9);
-      font-weight: 600;
-    }
-    .day.selected::before{
-      content:"";
-      position:absolute;
-      inset:-4px;
-      border-radius: 12px;
-      background: rgba(183,123,138,.16);
-      border: 1px solid rgba(183,123,138,.35);
-      box-shadow: 0 10px 22px rgba(183,123,138,.12);
-      z-index:-1;
-    }
-    .day.selected::after{
-      content:"";
-      position:absolute;
-      width: 34px;
-      height: 34px;
-      right: -10px;
-      bottom: -12px;
-      background: url("element_3.png") center / cover no-repeat;
-      opacity: .45;
-      transform: rotate(-8deg);
-      pointer-events:none;
-      filter: drop-shadow(0 8px 14px rgba(0,0,0,.10));
+    .hint{
+      font-size: 20px;
+      letter-spacing: .22em;
+      color: rgba(177,122,134,.90);
+      margin: 22px 0 0;
     }
 
-    /* Локация */
-    .placeTitle{
-      margin: 0 0 10px;
-      font-size: 44px;
-      line-height: 1.05;
-    }
-    .placeText{
+    .lead{
       margin: 0 auto;
-      max-width: 340px;
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      font-size: 18px;
-      line-height: 1.55;
-      color: rgba(47,47,47,.78);
-    }
-    .btn{
-      margin: 18px auto 0;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding: 16px 26px;
-      min-width: 240px;
-      border-radius: 999px;
-      background: rgba(183,123,138,.78);
-      color: rgba(255,255,255,.92);
-      text-decoration:none;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      font-size: 16px;
-      border: 1px solid rgba(183,123,138,.65);
-      box-shadow: 0 16px 36px rgba(183,123,138,.18);
-      transition: transform .12s ease, filter .12s ease, background .12s ease;
-    }
-    .btn:active{ transform: translateY(1px) scale(.99); }
-    .btn:hover{ filter: brightness(1.02); background: rgba(183,123,138,.86); }
-
-    /* RSVP */
-    .rsvpTitle{
-      margin: 0 0 14px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      font-size: 24px;
-      color: rgba(47,47,47,.78);
-      line-height:1.35;
-    }
-    .field{
-      width: 100%;
-      margin: 12px 0 0;
-      padding: 14px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(47,47,47,.35);
-      background: rgba(255,255,255,.35);
-      outline: none;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 18px;
+      max-width: 360px;
+      font-size: 20px;
+      color: var(--muted);
+      line-height: 1.35;
       letter-spacing: .06em;
       text-transform: uppercase;
-      color: rgba(47,47,47,.82);
     }
-    .field::placeholder{ color: rgba(47,47,47,.45); }
+    .lead strong{
+      color: var(--text);
+      font-weight: 600;
+    }
 
-    .choices{
-      margin-top: 14px;
-      display:flex;
-      flex-direction: column;
-      gap: 10px;
+    .section{
+      padding: 36px 10px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* RSVP card */
+    .card{
+      margin: 18px auto 0;
+      max-width: 370px;
+      background: var(--card);
+      backdrop-filter: blur(8px);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 22px 18px 18px;
+      border: 1px solid rgba(255,255,255,.38);
+    }
+    .cardTitle{
+      font-size: 22px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+    .input{
+      width:100%;
+      height: 52px;
+      border-radius: 26px;
+      border: 1px solid rgba(43,43,43,.35);
+      background: rgba(255,255,255,.55);
+      padding: 0 18px;
+      font-size: 18px;
+      outline: none;
+      font-family: "Cormorant Garamond", serif;
+    }
+    .input::placeholder{
+      color: rgba(43,43,43,.45);
+      letter-spacing: .10em;
+      text-transform: uppercase;
+    }
+
+    .radios{
+      margin: 16px 2px 10px;
       text-align:left;
-      padding: 0 8px;
+      font-size: 20px;
+      letter-spacing: .06em;
+      color: rgba(43,43,43,.85);
     }
-
-    .choice{
+    .radioRow{
       display:flex;
       align-items:center;
       gap: 12px;
-      font-size: 18px;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: rgba(47,47,47,.72);
+      margin: 10px 0;
     }
-
-    .choice input{
+    .radioRow input[type="radio"]{
       width: 20px;
       height: 20px;
       accent-color: var(--roseDeep);
-    }
-
-    .send{
-      width: 100%;
-      margin-top: 16px;
-      border: none;
       cursor: pointer;
     }
-
-    /* Таймер как “табло” */
-    .countWrap{
-      margin-top: 28px;
+    .btn{
+      display:block;
+      width: 100%;
+      height: 56px;
+      border-radius: 28px;
+      border: none;
+      cursor:pointer;
+      background: rgba(177,122,134,.92);
+      color: #fff;
+      font-size: 20px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-family: "Cormorant Garamond", serif;
+      box-shadow: 0 12px 26px rgba(177,122,134,.26);
+      transition: transform .12s ease, filter .12s ease;
     }
+    .btn:active{ transform: scale(.99); filter: brightness(.98); }
+
+    .statusMsg{
+      margin-top: 10px;
+      font-size: 16px;
+      color: rgba(43,43,43,.75);
+      min-height: 22px;
+      letter-spacing: .04em;
+    }
+
+    /* Countdown */
     .countTitle{
-      margin: 0 0 10px;
+      margin-top: 26px;
+      font-size: 22px;
+      letter-spacing: .18em;
+      color: rgba(43,43,43,.80);
+      text-transform: uppercase;
+    }
+    .countGrid{
+      margin: 14px auto 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      max-width: 370px;
+      align-items: start;
+    }
+    .countCell{
+      text-align:center;
+    }
+    .digitBox{
+      height: 56px;
+      border-radius: 14px;
+      background: rgba(177,122,134,.55);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: #fff;
+      font-size: 34px;
+      letter-spacing: .08em;
+      box-shadow: 0 12px 28px rgba(0,0,0,.08);
+    }
+    .label{
+      margin-top: 8px;
+      font-size: 16px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(43,43,43,.70);
+    }
+
+    /* Date section */
+    .dateTitle{
+      font-size: 48px;
+      margin: 0 0 14px;
+    }
+    .dateText{
       font-size: 22px;
       letter-spacing: .14em;
       text-transform: uppercase;
-      color: rgba(47,47,47,.62);
+      color: rgba(43,43,43,.82);
+      line-height: 1.4;
     }
-    .counter{
+
+    /* Calendar */
+    .calendar{
+      margin: 18px auto 0;
+      max-width: 380px;
+      border-radius: 26px;
+      background: rgba(255,255,255,.52);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.35);
+      box-shadow: var(--shadow);
+      padding: 14px 14px 16px;
+    }
+    .dow{
       display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      justify-items: center;
-      align-items: start;
-    }
-    .tile{
-      width: 100%;
-      border-radius: 14px;
-      background: rgba(183,123,138,.62);
-      border: 1px solid rgba(183,123,138,.55);
-      color: rgba(255,255,255,.92);
-      box-shadow: 0 18px 34px rgba(183,123,138,.18);
-      padding: 10px 0 8px;
-    }
-    .num{
-      font-size: 34px;
-      line-height: 1;
-      letter-spacing: .10em;
-      font-variant-numeric: tabular-nums;
-    }
-    .lab{
-      margin-top: 6px;
-      font-size: 14px;
-      letter-spacing: .16em;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      padding: 8px 10px;
+      border-radius: 18px;
+      border: 1px solid rgba(43,43,43,.28);
+      font-size: 16px;
+      letter-spacing: .12em;
       text-transform: uppercase;
-      color: rgba(47,47,47,.68);
-      text-align:center;
+      color: rgba(43,43,43,.72);
+      background: rgba(255,255,255,.40);
+    }
+    .days{
+      margin-top: 14px;
+      display:grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+      padding: 2px 6px 6px;
+      color: rgba(43,43,43,.86);
+      font-size: 18px;
+      letter-spacing: .06em;
+      align-items:center;
+      justify-items:center;
+    }
+    .day{
+      width: 34px;
+      height: 34px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius: 999px;
+    }
+    .day.muted{ color: rgba(43,43,43,.28); }
+    .day.selected{
+      background: rgba(177,122,134,.80);
+      color:#fff;
+      box-shadow: 0 12px 22px rgba(177,122,134,.22);
+    }
+
+    /* Place section */
+    .placeTitle{
+      font-size: 54px;
+      margin: 0 0 10px;
+    }
+    .placeText{
+      margin: 0 auto;
+      max-width: 360px;
+      font-size: 20px;
+      line-height: 1.4;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(43,43,43,.78);
+    }
+    .dividerSpace{ height: 16px; }
+
+    .btnLink{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height: 56px;
+      padding: 0 30px;
+      border-radius: 28px;
+      background: rgba(177,122,134,.92);
+      color:#fff;
+      text-decoration:none;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: 18px;
+      box-shadow: 0 12px 26px rgba(177,122,134,.26);
+      margin-top: 16px;
     }
 
     .sign{
-      margin-top: 26px;
-      font-size: 54px;
-      line-height: 1;
-    }
-    .signSub{
-      margin: 6px 0 0;
-      color: rgba(47,47,47,.62);
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      font-size: 14px;
+      margin-top: 30px;
+      font-size: 52px;
+      color: rgba(177,122,134,.92);
     }
 
-    .dividerSpace{ height: 18px; }
-
-    /* Подгон под очень маленькие экраны */
-    @media (max-width: 360px){
-      .titleTop{ font-size: 46px; }
-      .subtitle{ font-size: 22px; }
-      .placeTitle{ font-size: 38px; }
-      .num{ font-size: 30px; }
-      .btn{ min-width: 220px; }
-    }
+    /* Smooth scroll */
+    a{ -webkit-tap-highlight-color: transparent; }
   </style>
 </head>
 
 <body>
-  <div class="page">
-    <!-- ДЕКОР -->
-    <img class="decor d-leaf float slow" src="element_1.png" alt="" />
-    <img class="decor d-flowerWide float" src="element_2.png" alt="" />
-    <img class="decor d-butterflies float fast" src="element_3.png" alt="" />
-    <img class="decor d-flowerTall float slow" src="element_4.png" alt="" />
+  <!-- Decorations -->
+  <img class="decor d-leaf" src="./element_4.png" alt="">
+  <img class="decor d-flowerWide" src="./element_2.png" alt="">
+  <img class="decor d-butterflies" src="./element_3.png" alt="">
+  <img class="decor d-flowerTall" src="./element_1.png" alt="">
 
-    <main class="wrap">
+  <div class="wrap">
 
-      <!-- HERO -->
-      <section class="section center reveal">
-        <div class="titleTop script">Латифа</div>
-        <p class="subtitle">1 годик</p>
-        <p class="subtitle" style="margin-top:14px;">Тұсаукесер</p>
+    <!-- HERO -->
+    <section class="section center reveal" id="top">
+      <div class="script titleName">Латифа</div>
+      <div class="titleSmall">1 ГОДИК</div>
+      <div class="titleKz">ТҰСАУКЕСЕР</div>
 
-        <div class="scrollHint" role="note" aria-label="Прокрутите вниз">
-          <div class="txt">Прокрутите вниз</div>
-          <!-- маленькая бабочка (берём из element_3.png как декор) -->
-          <img class="miniButterfly" src="element_3.png" alt="" />
+      <div class="hint">ПРОКРУТИТЕ ВНИЗ</div>
+      <img class="centerButterfly" src="./ChatGPT%20Image%2028%20февр.%202026%20г.,%2015_16_18.png" alt="">
+
+      <div class="script" style="font-size:52px; margin: 10px 0 12px;">Дорогие гости!</div>
+      <p class="lead">
+        С РАДОСТЬЮ ПРИГЛАШАЕМ ВАС<br>
+        НА ПЕРВЫЙ ГОДИК<br>
+        НАШЕЙ ДОЧЕНЬКИ<br>
+        И ОБРЯД ТҰСАУКЕСЕР!<br>
+        <strong>БУДЕМ РАДЫ РАЗДЕЛИТЬ<br>С ВАМИ ЭТОТ ДЕНЬ!</strong>
+      </p>
+    </section>
+
+    <!-- DATE -->
+    <section class="section center reveal" id="date">
+      <div class="script dateTitle">Дата торжества:</div>
+      <div class="dateText">
+        11 АПРЕЛЯ 2026 ГОДА<br>
+        ВРЕМЯ 14:00
+      </div>
+
+      <div class="calendar" aria-label="calendar">
+        <div class="dow">
+          <div>ПН</div><div>ВТ</div><div>СР</div><div>ЧТ</div><div>ПТ</div><div>СБ</div><div>ВС</div>
         </div>
-      </section>
+        <div class="days" id="calendarDays"></div>
+      </div>
+    </section>
 
-      <!-- ПРИГЛАШЕНИЕ -->
-      <section class="section center reveal">
-        <div class="script" style="font-size:44px; line-height:1.05; margin-bottom:8px;">Дорогие гости!</div>
-        <p class="lead">
-          С радостью приглашаем Вас на первый годик нашей доченьки и обряд тұсаукесер!
-          Будем рады разделить с Вами этот день.
-        </p>
-      </section>
-
-      <!-- ДАТА + КАЛЕНДАРЬ -->
-      <section class="section center reveal">
-        <div class="script" style="font-size:44px; line-height:1.05; margin-bottom:10px;">Дата торжества:</div>
-        <div class="meta">
-          <span class="strong">12 апреля 2026 года</span><br>
-          <span class="metaLine">время 14:00</span>
+    <!-- RSVP + COUNTDOWN -->
+    <section class="section center reveal" id="rsvp">
+      <div class="card">
+        <div class="cardTitle">
+          ПОДТВЕРДИТЕ,<br>ПОЖАЛУЙСТА, СВОЁ<br>ПРИСУТСТВИЕ:
         </div>
 
-        <div class="calendar" aria-label="Календарь">
-          <div class="calDow">
-            <div>пн</div><div>вт</div><div>ср</div><div>чт</div><div>пт</div><div>сб</div><div>вс</div>
+        <input class="input" id="name" type="text" placeholder="ВАШЕ ИМЯ" maxlength="60" autocomplete="name">
+
+        <div class="radios" role="radiogroup" aria-label="attendance">
+          <label class="radioRow">
+            <input type="radio" name="att" value="Обязательно приду">
+            <span>ОБЯЗАТЕЛЬНО ПРИДУ</span>
+          </label>
+          <label class="radioRow">
+            <input type="radio" name="att" value="Приду со второй половинкой" checked>
+            <span>ПРИДУ СО ВТОРОЙ ПОЛОВИНКОЙ</span>
+          </label>
+          <label class="radioRow">
+            <input type="radio" name="att" value="Не смогу присутствовать">
+            <span>НЕ СМОГУ ПРИСУТСТВОВАТЬ</span>
+          </label>
+        </div>
+
+        <button class="btn" id="sendBtn">ОТПРАВИТЬ</button>
+        <div class="statusMsg" id="statusMsg"></div>
+
+        <div class="countTitle">ДО ТОРЖЕСТВА:</div>
+        <div class="countGrid" aria-label="countdown">
+          <div class="countCell">
+            <div class="digitBox" id="dDays">00</div>
+            <div class="label">ДНЕЙ</div>
           </div>
-          <div id="calGrid" class="calGrid"></div>
-        </div>
-      </section>
-
-      <!-- RSVP + ТАЙМЕР -->
-      <section class="section center reveal">
-        <div class="card">
-          <div class="rsvpTitle">Подтвердите, пожалуйста, своё присутствие:</div>
-
-          <form id="rsvpForm" autocomplete="on">
-            <input class="field" type="text" name="name" placeholder="ВАШЕ ИМЯ" required />
-
-            <div class="choices" role="radiogroup" aria-label="Вариант участия">
-              <label class="choice">
-                <input type="radio" name="status" value="Обязательно приду" required />
-                ОБЯЗАТЕЛЬНО ПРИДУ
-              </label>
-              <label class="choice">
-                <input type="radio" name="status" value="Приду со второй половинкой" />
-                ПРИДУ СО ВТОРОЙ ПОЛОВИНКОЙ
-              </label>
-              <label class="choice">
-                <input type="radio" name="status" value="Не смогу присутствовать" />
-                НЕ СМОГУ ПРИСУТСТВОВАТЬ
-              </label>
-            </div>
-
-            <button class="btn send" type="submit">ОТПРАВИТЬ</button>
-
-            <div id="formMsg" class="signSub" style="margin-top:12px;"></div>
-          </form>
-
-          <div class="countWrap">
-            <div class="countTitle">До торжества:</div>
-            <div class="counter" aria-label="Обратный отсчёт">
-              <div style="width:100%;">
-                <div class="tile"><div id="dd" class="num">00</div></div>
-                <div class="lab">ДНЕЙ</div>
-              </div>
-              <div style="width:100%;">
-                <div class="tile"><div id="hh" class="num">00</div></div>
-                <div class="lab">ЧАСОВ</div>
-              </div>
-              <div style="width:100%;">
-                <div class="tile"><div id="mm" class="num">00</div></div>
-                <div class="lab">МИНУТ</div>
-              </div>
-              <div style="width:100%;">
-                <div class="tile"><div id="ss" class="num">00</div></div>
-                <div class="lab">СЕКУНД</div>
-              </div>
-            </div>
+          <div class="countCell">
+            <div class="digitBox" id="dHours">00</div>
+            <div class="label">ЧАСОВ</div>
           </div>
-
+          <div class="countCell">
+            <div class="digitBox" id="dMins">00</div>
+            <div class="label">МИНУТ</div>
+          </div>
+          <div class="countCell">
+            <div class="digitBox" id="dSecs">00</div>
+            <div class="label">СЕКУНД</div>
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- МЕСТО -->
-      <section class="section center reveal">
-        <div class="script placeTitle">Место проведения:</div>
+    <!-- PLACE -->
+    <section class="section center reveal" id="place">
+      <div class="script placeTitle">Место проведения:</div>
 
-        <p class="placeText">
-          ГОРОД АЛМАТЫ<br>
-          УЛИЦА КЕРЕЙ — ЖАНИБЕК ХАНДАР, 8<br>
-          РЕСТОРАН “SABROSO”
-        </p>
+      <p class="placeText">
+        ГОРОД АЛМАТЫ<br>
+        УЛИЦА КЕРЕЙ - ЖАНИБЕК<br>
+        ХАНДАР, 8<br>
+        РЕСТОРАН "SABROSO"
+      </p>
 
-        <div class="dividerSpace"></div>
+      <div class="dividerSpace"></div>
 
-        <p class="placeText" style="font-size:16px; max-width: 320px;">
-          ДЛЯ ВАШЕГО УДОБСТВА МОЖЕТЕ ВОСПОЛЬЗОВАТЬСЯ КАРТОЙ
-        </p>
+      <p class="placeText" style="font-size:16px; max-width: 320px;">
+        ДЛЯ ВАШЕГО УДОБСТВА<br>
+        МОЖЕТЕ ВОСПОЛЬЗОВАТЬСЯ<br>
+        КАРТОЙ
+      </p>
 
-        <!-- Вставьте сюда Вашу ссылку на 2GIS/Google Maps -->
-        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Sabroso%20Алматы%20Керей%20Жанибек%20Хандар%208" target="_blank" rel="noopener">
-          ОТКРЫТЬ КАРТУ
-        </a>
+      <a class="btnLink" href="https://www.google.com/maps/search/?api=1&query=Sabroso%20Алматы%20Керей%20Жанибек%20Хандар%208" target="_blank" rel="noopener">
+        ОТКРЫТЬ КАРТУ
+      </a>
 
-        <div class="script sign">С уважением,</div>
-        <div class="script" style="font-size:56px; margin-top:6px;">Болат — Зара</div>
-      </section>
+      <div class="script" style="font-size:46px; margin-top: 32px;">С уважением,</div>
+      <div class="script" style="font-size:58px; margin-top: 6px;">Болат - Зара</div>
+    </section>
 
-    </main>
   </div>
 
   <script>
     // =========================
-    // 1) ПЛАВНОЕ ПОЯВЛЕНИЕ СЕКЦИЙ
+    // 1) Google Sheets receiver
     // =========================
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries) {
-        if (e.isIntersecting) e.target.classList.add('in');
-      }
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    // ВАЖНО: вставьте сюда URL веб-приложения Apps Script (Deploy -> Web app URL)
+    const GOOGLE_SCRIPT_URL = "PASTE_YOUR_WEB_APP_URL_HERE";
 
     // =========================
-    // 2) КАЛЕНДАРЬ (Апрель 2026, выделить 12)
+    // 2) Calendar
     // =========================
-    // Неделя: ПН..ВС
     function renderCalendar(year, monthIndex0, selectedDay){
-      const grid = document.getElementById('calGrid');
-      grid.innerHTML = '';
+      // monthIndex0: 0=Jan ... 3=April
+      const daysEl = document.getElementById("calendarDays");
+      daysEl.innerHTML = "";
 
       const first = new Date(year, monthIndex0, 1);
       const last = new Date(year, monthIndex0 + 1, 0);
-      const daysInMonth = last.getDate();
 
-      // JS: 0=ВС..6=СБ, надо сместить под ПН
-      const jsDow = first.getDay();               // 0..6
-      const startOffset = (jsDow + 6) % 7;        // ПН=0..ВС=6
+      // Convert JS day (Sun=0) to Monday-first offset
+      const jsDow = first.getDay(); // 0..6
+      const offset = (jsDow + 6) % 7; // Mon=0..Sun=6
 
-      // Пустые клетки до 1 числа
-      for (let i = 0; i < startOffset; i++){
-        const d = document.createElement('div');
-        d.className = 'day muted';
-        d.textContent = '';
-        grid.appendChild(d);
+      // Fill blanks
+      for(let i=0;i<offset;i++){
+        const d = document.createElement("div");
+        d.className = "day muted";
+        d.textContent = "";
+        daysEl.appendChild(d);
       }
 
-      for (let day = 1; day <= daysInMonth; day++){
-        const d = document.createElement('div');
-        d.className = 'day';
+      for(let day=1; day<=last.getDate(); day++){
+        const d = document.createElement("div");
+        d.className = "day" + (day===selectedDay ? " selected" : "");
         d.textContent = String(day);
-
-        if (day === selectedDay) d.classList.add('selected');
-        grid.appendChild(d);
+        daysEl.appendChild(d);
       }
 
-      // добить до ровной сетки (чтобы красиво смотрелось)
-      const total = startOffset + daysInMonth;
-      const remain = (7 - (total % 7)) % 7;
-      for (let i = 0; i < remain; i++){
-        const d = document.createElement('div');
-        d.className = 'day muted';
-        d.textContent = '';
-        grid.appendChild(d);
+      // keep grid neat to full weeks (optional)
+      const total = offset + last.getDate();
+      const tail = (7 - (total % 7)) % 7;
+      for(let i=0;i<tail;i++){
+        const d = document.createElement("div");
+        d.className = "day muted";
+        d.textContent = "";
+        daysEl.appendChild(d);
       }
     }
 
-    renderCalendar(2026, 3, 12); // 3 = апрель
+    // April 2026, select 11
+    renderCalendar(2026, 3, 11);
 
     // =========================
-    // 3) ОБРАТНЫЙ ОТСЧЁТ (12 апреля 2026 14:00, Алматы +05)
+    // 3) Countdown
     // =========================
-    // ВНИМАНИЕ: GitHub Pages не знает Ваш часовой пояс. Сделаем расчёт через "Asia/Almaty" с Intl.
-    const targetISO = "2026-04-12T14:00:00";
-    const targetTz = "Asia/Almaty";
+    const targetISO = "2026-04-11T14:00:00";
 
-    function getTimeInTz(date, timeZone){
-      // Возвращаем timestamp, соответствующий локальному времени в timeZone
-      const parts = new Intl.DateTimeFormat('en-US', {
-        timeZone,
-        year:'numeric', month:'2-digit', day:'2-digit',
-        hour:'2-digit', minute:'2-digit', second:'2-digit',
-        hour12:false
-      }).formatToParts(date).reduce((acc,p)=> (acc[p.type]=p.value, acc), {});
-      const asISO = `${parts.year}-${parts.month}-${parts.day}T${parts.hour}:${parts.minute}:${parts.second}`;
-      return new Date(asISO).getTime();
-    }
+    function pad2(n){ return String(n).padStart(2,"0"); }
 
     function tick(){
+      const target = new Date(targetISO);
       const now = new Date();
-      // текущее время в Алматы
-      const nowAlmatyMs = getTimeInTz(now, targetTz);
+      let diff = Math.max(0, target - now);
 
-      // цель (интерпретируем как время Алматы)
-      const targetMs = new Date(targetISO).getTime();
+      const sec = Math.floor(diff/1000);
+      const days = Math.floor(sec / 86400);
+      const hours = Math.floor((sec % 86400) / 3600);
+      const mins = Math.floor((sec % 3600) / 60);
+      const secs = sec % 60;
 
-      let diff = targetMs - nowAlmatyMs;
-      if (diff < 0) diff = 0;
-
-      const s = Math.floor(diff/1000);
-      const days = Math.floor(s / 86400);
-      const hours = Math.floor((s % 86400) / 3600);
-      const mins = Math.floor((s % 3600) / 60);
-      const secs = s % 60;
-
-      const pad = (n)=> String(n).padStart(2,'0');
-      document.getElementById('dd').textContent = pad(days);
-      document.getElementById('hh').textContent = pad(hours);
-      document.getElementById('mm').textContent = pad(mins);
-      document.getElementById('ss').textContent = pad(secs);
+      document.getElementById("dDays").textContent = pad2(days);
+      document.getElementById("dHours").textContent = pad2(hours);
+      document.getElementById("dMins").textContent = pad2(mins);
+      document.getElementById("dSecs").textContent = pad2(secs);
     }
     tick();
     setInterval(tick, 1000);
 
     // =========================
-    // 4) RSVP: КУДА СОХРАНЯЮТСЯ ДАННЫЕ И КАК ИЗМЕНИТЬ
+    // 4) RSVP submit
     // =========================
-    // По умолчанию (без сервера) — localStorage на устройстве пользователя.
-    // Если хотите, чтобы попадало к Вам в таблицу/БД — вставьте URL приёмника (Google Apps Script / Firebase).
-    const FORM_ACTION_URL = ""; // <-- сюда вставьте URL (если будет). Если пусто — сохраняем локально.
-
-    const form = document.getElementById('rsvpForm');
-    const msg = document.getElementById('formMsg');
-
-    function saveLocal(payload){
-      const key = "latifa_rsvp";
-      const list = JSON.parse(localStorage.getItem(key) || "[]");
-      list.push(payload);
-      localStorage.setItem(key, JSON.stringify(list));
+    function getAttendance(){
+      const checked = document.querySelector('input[name="att"]:checked');
+      return checked ? checked.value : "";
     }
 
-    async function sendRemote(payload){
-      const res = await fetch(FORM_ACTION_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      if (!res.ok) throw new Error("remote_failed");
+    function setStatus(text){
+      document.getElementById("statusMsg").textContent = text;
     }
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      msg.textContent = "";
+    document.getElementById("sendBtn").addEventListener("click", async () => {
+      const name = document.getElementById("name").value.trim();
+      const attendance = getAttendance();
 
-      const fd = new FormData(form);
-      const payload = {
-        name: String(fd.get("name") || "").trim(),
-        status: String(fd.get("status") || "").trim(),
-        createdAt: new Date().toISOString()
-      };
-
-      if (!payload.name || !payload.status){
-        msg.textContent = "Пожалуйста, заполните имя и выберите вариант.";
+      if(!name){
+        setStatus("Пожалуйста, введите имя.");
+        return;
+      }
+      if(!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PASTE_YOUR_WEB_APP_URL_HERE")){
+        setStatus("Не настроен адрес сохранения (Apps Script URL).");
         return;
       }
 
+      const payload = {
+        name,
+        attendance,
+        source: "github-pages",
+        userAgent: navigator.userAgent
+      };
+
+      // GitHub Pages -> Apps Script: часто удобнее отправлять без чтения ответа (no-cors)
+      // Тогда не будет CORS-ошибок, и всё равно данные сохранятся.
       try{
-        if (FORM_ACTION_URL){
-          await sendRemote(payload);
-          msg.textContent = "Спасибо! Ответ отправлен.";
-        } else {
-          saveLocal(payload);
-          msg.textContent = "Спасибо! Ответ сохранён (на этом устройстве).";
-        }
-        form.reset();
-      } catch(err){
-        msg.textContent = "Не удалось отправить. Попробуйте ещё раз.";
+        setStatus("Отправляем...");
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        setStatus("Спасибо! Ответ отправлен ✅");
+        document.getElementById("name").value = "";
+      }catch(e){
+        setStatus("Не удалось отправить. Проверьте интернет/URL скрипта.");
       }
     });
+
+    // =========================
+    // 5) Smooth reveal on scroll
+    // =========================
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting) en.target.classList.add("show");
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
   </script>
 </body>
 </html>
