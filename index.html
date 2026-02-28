@@ -2,468 +2,418 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Латифа — 1 годик • Тұсаукесер</title>
-  <meta name="description" content="12.04.2026 • 14:00 • Алматы • Sabroso" />
-
-  <!-- OpenGraph (для WhatsApp/Telegram превью) -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Латифа — 1 годик • Тұсаукесер" />
-  <meta property="og:description" content="12 апреля 2026 • 14:00 • Алматы • Sabroso" />
-  <!-- Замените на вашу картинку (можно оставить как есть) -->
-  <meta property="og:image" content="https://static.tildacdn.pro/tild3439-3932-4539-b439-396362616534/IMAGE_2026-02-09_185.jpg" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Латифа — 1 годик — Тұсаукесер</title>
 
   <style>
     :root{
-      --bg: #0f0f10;
-      --card: rgba(255,255,255,.08);
-      --card2: rgba(255,255,255,.12);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.72);
-      --accent: #bd7c89;
-      --accent2: #1f7a3a;
-      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --text:#2e2a2a;
+      --muted:#6b5d5d;
+      --accent:#b07a86;
+      --accent-2:#8f5e68;
+      --card: rgba(255,255,255,.72);
+      --border: rgba(0,0,0,.12);
+      --shadow: 0 12px 30px rgba(0,0,0,.10);
       --radius: 22px;
     }
-    *{box-sizing:border-box}
+
+    *{ box-sizing:border-box; }
     body{
       margin:0;
-      font-family: "Noto Serif Display", serif;
-      color: var(--text);
-      background: var(--bg);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:#fff;
     }
 
-    .hero{
-      min-height: 100svh;
+    /* Фон (если Background.png тоже в корне — оставьте как есть, иначе удалите строку) */
+    .page{
+      min-height:100svh;
+      background: url("Background.png") center/cover no-repeat fixed;
       position: relative;
-      overflow: hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 28px 18px;
+      overflow:hidden;
     }
-    .hero::before{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,.65) 55%, rgba(0,0,0,.85) 100%),
-        url("https://static.tildacdn.pro/tild3339-3331-4365-b536-636234393230/IMG_6694_2.JPG") center/cover no-repeat;
-      transform: scale(1.03);
-      filter: saturate(1.05);
+
+    .safe{
+      padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right))
+               max(24px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
     }
+
+    /* Декор */
+    .decor{ position:absolute; pointer-events:none; user-select:none; }
+    .d1{ left:-12px; top:20px; width:180px; opacity:.95; }       /* element_1 */
+    .d2{ right:-10px; top:0; width:220px; opacity:.95; }         /* element_4 */
+    .d3{ left:-18px; bottom:10px; width:240px; opacity:.95;}     /* element_3 */
+    .d4{ right:-10px; bottom:-10px; width:180px; opacity:.95;}   /* element_2 */
+
     .wrap{
-      width:min(980px, 100%);
-      position:relative;
-      z-index:2;
-      display:grid;
-      gap: 18px;
-    }
-    .topbar{
+      max-width: 520px;
+      margin: 0 auto;
       display:flex;
-      justify-content: space-between;
-      align-items:center;
-      gap:12px;
-    }
-    .pill{
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
-      padding:10px 14px;
-      border-radius: 999px;
-      background: rgba(0,0,0,.35);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: var(--shadow);
-      font-size: 14px;
-      color: var(--muted);
-    }
-    .btn{
-      appearance:none;
-      border:0;
-      cursor:pointer;
-      text-decoration:none;
-      color: #fff;
-      background: var(--accent);
-      padding: 11px 14px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 14px;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      box-shadow: 0 12px 30px rgba(189,124,137,.35);
-      transition: transform .15s ease, filter .15s ease;
-      white-space: nowrap;
-    }
-    .btn:hover{ transform: translateY(-1px); filter: brightness(1.03); }
-    .btn.secondary{
-      background: rgba(255,255,255,.12);
-      box-shadow:none;
-      border: 1px solid rgba(255,255,255,.16);
-      color: var(--text);
+      flex-direction:column;
+      gap: 18px;
     }
 
     .card{
       background: var(--card);
-      border: 1px solid rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.55);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
-      padding: 22px;
+      padding: 18px 16px;
     }
-    .title{
-      text-align:center;
-      padding: 20px 16px 14px;
-    }
-    .name{
-      font-size: clamp(44px, 7vw, 74px);
+
+    .center{ text-align:center; }
+
+    .title-script{
+      font-size: 44px;
       line-height: 1.05;
-      margin: 0 0 8px;
-      letter-spacing: .5px;
-      color: #ffd9e1;
-      text-shadow: 0 12px 40px rgba(0,0,0,.4);
+      letter-spacing:.2px;
+      color: var(--accent);
+      margin: 6px 0 8px;
+      font-family: "Georgia", "Times New Roman", serif;
+      font-style: italic;
     }
+
     .subtitle{
-      margin:0;
-      font-size: clamp(16px, 2.8vw, 22px);
-      color: rgba(255,255,255,.88);
-      font-weight: 600;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 18px;
-    }
-    @media (max-width: 860px){
-      .grid{ grid-template-columns: 1fr; }
-    }
-
-    .h{
-      margin: 0 0 10px;
-      font-weight: 800;
       font-size: 18px;
-      color: rgba(255,255,255,.92);
+      letter-spacing: .18em;
+      color: var(--accent-2);
+      margin: 0 0 8px;
+      text-transform: uppercase;
     }
-    .lead{
-      margin:0;
-      color: rgba(255,255,255,.86);
-      font-size: 18px;
-      line-height: 1.55;
-      font-weight: 400;
-    }
-    .muted{ color: var(--muted); }
 
-    .kv{
-      display:grid;
-      gap: 10px;
-      margin-top: 14px;
+    .h2{
+      font-size: 20px;
+      letter-spacing: .10em;
+      margin: 0 0 12px;
+      text-transform: uppercase;
+      color: var(--text);
     }
-    .kv-row{
+
+    .text{
+      font-size: 16px;
+      line-height: 1.45;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .divider{
+      height:1px;
+      background: rgba(0,0,0,.06);
+      margin: 14px 0;
+    }
+
+    .btn{
+      width:100%;
+      border:none;
+      border-radius: 999px;
+      padding: 14px 16px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 16px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 18px rgba(176,122,134,.25);
+      cursor:pointer;
+    }
+    .btn:active{ transform: translateY(1px); }
+
+    input[type="text"]{
+      width:100%;
+      padding: 14px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.65);
+      font-size: 16px;
+      outline:none;
+    }
+
+    .radios{
       display:flex;
-      justify-content: space-between;
-      align-items:flex-start;
-      gap: 14px;
-      padding: 12px 14px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.10);
+      flex-direction:column;
+      gap: 10px;
+      margin-top: 12px;
+      text-align:left;
     }
-    .k{
-      font-weight: 700;
-      color: rgba(255,255,255,.9);
+    .radio{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size: 16px;
+      color: var(--text);
     }
-    .v{
-      text-align:right;
-      color: rgba(255,255,255,.86);
-      font-weight: 500;
-    }
+    .radio input{ transform: scale(1.1); }
 
-    .countdown{
+    .timer{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
-      margin-top: 12px;
-    }
-    .cd{
-      background: rgba(255,255,255,.09);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 16px;
-      padding: 12px 10px;
-      text-align:center;
-    }
-    .cd .num{
-      font-size: 28px;
-      font-weight: 800;
-      line-height: 1.1;
-    }
-    .cd .lbl{
-      font-size: 12px;
-      color: rgba(255,255,255,.72);
-      margin-top: 6px;
-      letter-spacing: .3px;
-    }
-    @media (max-width: 420px){
-      .countdown{ grid-template-columns: repeat(2, 1fr); }
-    }
-
-    form{
-      display:grid;
-      gap: 10px;
       margin-top: 10px;
     }
-    input, select, textarea{
-      width:100%;
-      padding: 12px 14px;
+    .tbox{
+      background: rgba(176,122,134,.18);
+      border: 1px solid rgba(176,122,134,.25);
       border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(0,0,0,.20);
-      color: var(--text);
-      outline:none;
-      font-size: 15px;
-      font-family: inherit;
-    }
-    input::placeholder, textarea::placeholder{ color: rgba(255,255,255,.55); }
-    textarea{ min-height: 92px; resize: vertical; }
-
-    .footer{
+      padding: 10px 8px;
       text-align:center;
-      padding: 10px 12px 2px;
-      color: rgba(255,255,255,.82);
-      font-weight: 600;
     }
-    .sign{
+    .tval{
+      font-size: 26px;
+      font-variant-numeric: tabular-nums;
+      color: var(--accent-2);
+      line-height:1.1;
+    }
+    .tlabel{
       margin-top: 6px;
-      color: rgba(255,255,255,.78);
-      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.55);
     }
 
-    .toast{
-      position: fixed;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,.65);
-      border: 1px solid rgba(255,255,255,.16);
-      color: #fff;
-      padding: 10px 12px;
-      border-radius: 14px;
-      font-size: 14px;
-      display:none;
-      z-index: 10;
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow);
-      max-width: min(520px, 92vw);
-      text-align:center;
+    .note{
+      font-size: 13px;
+      color: rgba(0,0,0,.55);
+      margin-top: 10px;
+    }
+
+    footer{
+      padding-bottom: 8px;
+      color: rgba(0,0,0,.55);
+      font-size: 13px;
+    }
+
+    @media (max-width: 380px){
+      .title-script{ font-size: 38px; }
+      .timer{ gap:8px; }
+      .tval{ font-size: 22px; }
     }
   </style>
 </head>
 
 <body>
-  <main class="hero">
-    <div class="wrap">
+  <main class="page">
+    <!-- Декор (все картинки в корне репозитория) -->
+    <img class="decor d1" src="element_1.png" alt="">
+    <img class="decor d2" src="element_4.png" alt="">
+    <img class="decor d3" src="element_3.png" alt="">
+    <img class="decor d4" src="element_2.png" alt="">
 
-      <div class="topbar">
-        <div class="pill" id="scrollHint">⬇️ Прокрутите вниз</div>
+    <div class="safe">
+      <div class="wrap">
 
-        <!-- Музыка (опционально): вставьте ссылку на mp3 вместо YOUR_MUSIC.mp3 -->
-        <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
-          <button class="btn secondary" type="button" id="playBtn">▶️ Музыка</button>
-          <button class="btn secondary" type="button" id="stopBtn">⏸️ Стоп</button>
-        </div>
-      </div>
+        <section class="card center">
+          <div class="title-script">Латифа</div>
+          <div class="subtitle">1 годик · Тұсаукесер</div>
+          <p class="text" style="letter-spacing:.18em; text-transform:uppercase; margin-top:14px;">
+            Прокрутите вниз
+          </p>
+        </section>
 
-      <section class="card title">
-        <h1 class="name">Латифа</h1>
-        <p class="subtitle">1 годик • Тұсаукесер</p>
-      </section>
-
-      <section class="grid">
-        <div class="card">
-          <h2 class="h">Дорогие гости!</h2>
-          <p class="lead">
-            С радостью приглашаем вас на первый годик нашей доченьки и обряд тұсаукесер!<br />
-            Будем рады разделить с вами этот день!
+        <section class="card center">
+          <div class="title-script" style="font-size:34px;margin-bottom:10px;">Дорогие гости!</div>
+          <p class="text">
+            С радостью приглашаем Вас на первый годик нашей доченьки и обряд тұсаукесер!
+            Будем рады разделить с Вами этот день!
           </p>
 
-          <div class="kv">
-            <div class="kv-row">
-              <div class="k">Дата торжества</div>
-              <div class="v"><strong>12 апреля 2026</strong></div>
-            </div>
-            <div class="kv-row">
-              <div class="k">Время</div>
-              <div class="v"><strong>14:00</strong></div>
-            </div>
-            <div class="kv-row">
-              <div class="k">Место проведения</div>
-              <div class="v">
-                г. Алматы, ул. Керей-Жанибек хандар, 8<br />
-                ресторан <strong>Sabroso</strong>
-              </div>
-            </div>
+          <div class="divider"></div>
+
+          <div class="title-script" style="font-size:30px;margin:0 0 10px;">Дата торжества:</div>
+          <div class="h2" style="margin-bottom:6px;">12 апреля 2026 года</div>
+          <div class="h2" style="margin:0;">Время 14:00</div>
+        </section>
+
+        <section class="card">
+          <div class="center">
+            <div class="h2">Подтвердите, пожалуйста, своё присутствие</div>
           </div>
 
-          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
-            <a class="btn" href="https://2gis.kz/almaty/geo/70000001042157730" target="_blank" rel="noopener">
-              📍 Открыть карту
+          <label>
+            <input id="guestName" type="text" placeholder="ВАШЕ ИМЯ" autocomplete="name" />
+          </label>
+
+          <div class="radios" role="radiogroup" aria-label="Статус участия">
+            <label class="radio">
+              <input type="radio" name="status" value="Обязательно приду">
+              Обязательно приду
+            </label>
+            <label class="radio">
+              <input type="radio" name="status" value="Приду со второй половинкой" checked>
+              Приду со второй половинкой
+            </label>
+            <label class="radio">
+              <input type="radio" name="status" value="Не смогу присутствовать">
+              Не смогу присутствовать
+            </label>
+          </div>
+
+          <div style="margin-top:14px;">
+            <button class="btn" id="sendBtn">Отправить</button>
+          </div>
+
+          <p class="note" id="saveNote"></p>
+        </section>
+
+        <section class="card center">
+          <div class="h2">До торжества:</div>
+          <div class="timer" aria-label="Таймер">
+            <div class="tbox"><div class="tval" id="dd">00</div><div class="tlabel">дней</div></div>
+            <div class="tbox"><div class="tval" id="hh">00</div><div class="tlabel">часов</div></div>
+            <div class="tbox"><div class="tval" id="mm">00</div><div class="tlabel">минут</div></div>
+            <div class="tbox"><div class="tval" id="ss">00</div><div class="tlabel">секунд</div></div>
+          </div>
+        </section>
+
+        <section class="card center">
+          <div class="title-script" style="font-size:32px;margin-bottom:8px;">Место проведения:</div>
+          <div class="h2" style="letter-spacing:.10em; line-height:1.5;">
+            Город Алматы<br>
+            Улица Керей - Жанибек хандар, 8<br>
+            Ресторан “Sabroso”
+          </div>
+
+          <p class="text" style="margin-top:8px;">
+            Для Вашего удобства можете воспользоваться картой
+          </p>
+
+          <div style="margin-top:14px;">
+            <a class="btn" style="display:inline-block; text-decoration:none; text-align:center;"
+               href="https://2gis.kz/almaty/search/Sabroso%20%D0%9A%D0%B5%D1%80%D0%B5%D0%B9%20%D0%96%D0%B0%D0%BD%D0%B8%D0%B1%D0%B5%D0%BA%20%D1%85%D0%B0%D0%BD%D0%B4%D0%B0%D1%80%208"
+               target="_blank" rel="noopener">
+              Открыть карту
             </a>
-            <a class="btn secondary" href="#rsvp">✅ Подтвердить присутствие</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <h2 class="h">До торжества</h2>
-          <div class="countdown" id="countdown">
-            <div class="cd"><div class="num" id="d">0</div><div class="lbl">дней</div></div>
-            <div class="cd"><div class="num" id="h">0</div><div class="lbl">часов</div></div>
-            <div class="cd"><div class="num" id="m">0</div><div class="lbl">минут</div></div>
-            <div class="cd"><div class="num" id="s">0</div><div class="lbl">секунд</div></div>
           </div>
 
-          <div style="height:12px"></div>
+          <div class="divider"></div>
 
-          <h2 class="h" id="rsvp">Подтвердите, пожалуйста, своё присутствие</h2>
-          <!-- ВАРИАНТ 1 (простая форма без сервера): отправляет в WhatsApp (поменяйте номер) -->
-          <form id="rsvpForm">
-            <input name="name" placeholder="Ваше имя и фамилия" required />
-            <input name="phone" placeholder="Телефон (необязательно)" />
-            <select name="count" required>
-              <option value="" disabled selected>Сколько гостей придёт?</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4+">4+</option>
-            </select>
-            <textarea name="note" placeholder="Комментарий (например: будем/не будем, дети, аллергии и т.д.)"></textarea>
+          <div class="title-script" style="font-size:34px;margin:0;">С уважением,</div>
+          <div class="title-script" style="font-size:40px;margin:6px 0 0;">Болат - Вара</div>
+        </section>
 
-            <button class="btn" type="submit">📩 Отправить подтверждение</button>
-            <div class="muted" style="font-size:12px; line-height:1.4;">
-              * Форма настроена на отправку сообщения в WhatsApp. Если хотите — скажите, куда отправлять (Telegram, e-mail, Google Form, Tilda), и я переделаю.
-            </div>
-          </form>
+        <footer class="center">
+          <div>© Приглашение</div>
+        </footer>
 
-          <div class="footer">
-            С уважением,<br />
-            <div class="sign">Болат — Зара</div>
-          </div>
-        </div>
-      </section>
-
+      </div>
     </div>
-
-    <div class="toast" id="toast"></div>
-
-    <!-- Аудио (замените src на свой файл; можно оставить пустым и кнопки будут просто показывать уведомление) -->
-    <audio id="bgAudio" preload="auto" loop>
-      <!-- Пример: <source src="https://example.com/music.mp3" type="audio/mpeg"> -->
-      <!-- <source src="YOUR_MUSIC.mp3" type="audio/mpeg"> -->
-    </audio>
-
-    <script>
-      // ====== НАСТРОЙКИ ======
-      // Дата/время мероприятия: 12 апреля 2026, 14:00 (Алматы UTC+5)
-      // Для надёжности считаем, что это Asia/Almaty. В JS напрямую TZ без библиотек сложно,
-      // поэтому задаём "как локальное время устройства" — обычно достаточно.
-      const EVENT_LOCAL = new Date(2026, 3, 12, 14, 0, 0); // месяцы: 0=январь, 3=апрель
-
-      // WhatsApp номер для подтверждения (в международном формате без +)
-      // Пример KZ: 77011234567
-      const WHATSAPP_PHONE = "77000000000";
-
-      // ====== УТИЛИТЫ ======
-      const $ = (id) => document.getElementById(id);
-      function pad(n){ return String(n).padStart(2, "0"); }
-      function toast(msg){
-        const t = $("toast");
-        t.textContent = msg;
-        t.style.display = "block";
-        clearTimeout(window.__toastTimer);
-        window.__toastTimer = setTimeout(() => t.style.display = "none", 3500);
-      }
-
-      // ====== COUNTDOWN ======
-      function tick(){
-        const now = new Date();
-        let diff = EVENT_LOCAL - now;
-
-        if (diff <= 0){
-          $("d").textContent = "0";
-          $("h").textContent = "0";
-          $("m").textContent = "0";
-          $("s").textContent = "0";
-          $("scrollHint").textContent = "🎉 Сегодня торжество!";
-          return;
-        }
-
-        const sec = Math.floor(diff / 1000);
-        const days = Math.floor(sec / 86400);
-        const hours = Math.floor((sec % 86400) / 3600);
-        const mins = Math.floor((sec % 3600) / 60);
-        const secs = sec % 60;
-
-        $("d").textContent = days;
-        $("h").textContent = hours;
-        $("m").textContent = mins;
-        $("s").textContent = secs;
-      }
-      tick();
-      setInterval(tick, 1000);
-
-      // ====== RSVP => WhatsApp ======
-      $("rsvpForm").addEventListener("submit", (e) => {
-        e.preventDefault();
-        const fd = new FormData(e.target);
-        const name = (fd.get("name") || "").toString().trim();
-        const phone = (fd.get("phone") || "").toString().trim();
-        const count = (fd.get("count") || "").toString().trim();
-        const note = (fd.get("note") || "").toString().trim();
-
-        const text =
-          "Подтверждение присутствия ✅%0A" +
-          "Имя: " + encodeURIComponent(name) + "%0A" +
-          "Телефон: " + encodeURIComponent(phone || "-") + "%0A" +
-          "Гостей: " + encodeURIComponent(count) + "%0A" +
-          "Комментарий: " + encodeURIComponent(note || "-") + "%0A%0A" +
-          "Мероприятие: Латифа — 1 годик • Тұсаукесер (12.04.2026, 14:00)";
-
-        const url = "https://wa.me/" + WHATSAPP_PHONE + "?text=" + text;
-        window.open(url, "_blank", "noopener");
-        toast("Откроется WhatsApp для отправки подтверждения ✅");
-      });
-
-      // ====== MUSIC ======
-      const audio = $("bgAudio");
-      $("playBtn").addEventListener("click", async () => {
-        try{
-          if (!audio.querySelector("source") || !audio.querySelector("source").src){
-            toast("Музыка не подключена. Вставьте ссылку на mp3 в коде (YOUR_MUSIC.mp3).");
-            return;
-          }
-          await audio.play();
-          toast("Музыка включена ▶️");
-        }catch(err){
-          toast("Не удалось включить музыку (браузер может блокировать автозвук).");
-        }
-      });
-      $("stopBtn").addEventListener("click", () => {
-        audio.pause();
-        audio.currentTime = 0;
-        toast("Музыка остановлена ⏸️");
-      });
-
-      // Hint: если пролистали — меняем подсказку
-      window.addEventListener("scroll", () => {
-        const y = window.scrollY || 0;
-        $("scrollHint").textContent = y > 60 ? "✅ Спасибо! Ниже — подтверждение" : "⬇️ Прокрутите вниз";
-      }, {passive:true});
-    </script>
   </main>
+
+  <script>
+    // Дата события
+    const EVENT_DATE = new Date("2026-04-12T14:00:00");
+
+    // Если хотите сохранять ответы в Google Таблицу — вставьте URL Apps Script
+    const SCRIPT_URL = ""; // например: "https://script.google.com/macros/s/XXXX/exec"
+
+    const LS_KEY = "latifa_rsvp_v1";
+
+    const dd = document.getElementById("dd");
+    const hh = document.getElementById("hh");
+    const mm = document.getElementById("mm");
+    const ss = document.getElementById("ss");
+
+    function pad(n){ return String(n).padStart(2,"0"); }
+
+    function tick(){
+      const now = new Date();
+      let diff = EVENT_DATE.getTime() - now.getTime();
+      if (diff < 0) diff = 0;
+
+      const totalSec = Math.floor(diff / 1000);
+      const days = Math.floor(totalSec / 86400);
+      const hours = Math.floor((totalSec % 86400) / 3600);
+      const mins = Math.floor((totalSec % 3600) / 60);
+      const secs = totalSec % 60;
+
+      dd.textContent = pad(days);
+      hh.textContent = pad(hours);
+      mm.textContent = pad(mins);
+      ss.textContent = pad(secs);
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    const guestName = document.getElementById("guestName");
+    const sendBtn = document.getElementById("sendBtn");
+    const saveNote = document.getElementById("saveNote");
+
+    function getStatus(){
+      const el = document.querySelector('input[name="status"]:checked');
+      return el ? el.value : "";
+    }
+
+    function loadLocal(){
+      try{
+        const raw = localStorage.getItem(LS_KEY);
+        if(!raw) return null;
+        return JSON.parse(raw);
+      }catch(e){ return null; }
+    }
+
+    function saveLocal(data){
+      localStorage.setItem(LS_KEY, JSON.stringify(data));
+    }
+
+    // Где сохраняются данные сейчас:
+    // 1) localStorage — в браузере пользователя на его телефоне/ПК.
+    // Чтобы данные сохранялись у ВАС и редактировались централизованно — нужен Google Sheet (SCRIPT_URL).
+
+    const prev = loadLocal();
+    if(prev && prev.name){
+      guestName.value = prev.name;
+      const radio = Array.from(document.querySelectorAll('input[name="status"]'))
+        .find(r => r.value === prev.status);
+      if(radio) radio.checked = true;
+
+      saveNote.textContent = "Вы уже отправляли ответ. Можно изменить и отправить снова.";
+    }
+
+    async function sendToGoogleSheet(payload){
+      // Apps Script должен принять JSON и записать в Google Sheet
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        headers: { "Content-Type":"application/json" },
+        body: JSON.stringify(payload),
+        mode: "no-cors"
+      });
+    }
+
+    sendBtn.addEventListener("click", async () => {
+      const name = guestName.value.trim();
+      const status = getStatus();
+
+      if(!name){
+        saveNote.textContent = "Пожалуйста, введите имя.";
+        return;
+      }
+
+      const existing = loadLocal();
+      const guestId = existing?.guestId || (crypto?.randomUUID ? crypto.randomUUID() : String(Date.now()));
+
+      const payload = {
+        guestId,       // по нему можно обновлять запись
+        name,
+        status,
+        updatedAt: new Date().toISOString()
+      };
+
+      // локально (в браузере гостя)
+      saveLocal(payload);
+
+      // если подключили таблицу — уходит туда
+      if(SCRIPT_URL){
+        try{
+          await sendToGoogleSheet(payload);
+          saveNote.textContent = "Спасибо! Ответ отправлен. Если передумаете — измените и отправьте ещё раз.";
+        }catch(e){
+          saveNote.textContent = "Ответ сохранён на устройстве, но не отправился в таблицу. Проверьте SCRIPT_URL.";
+        }
+      }else{
+        saveNote.textContent = "Ответ сохранён на этом устройстве (localStorage). Для общей таблицы подключите Google Sheets.";
+      }
+    });
+  </script>
 </body>
 </html>
