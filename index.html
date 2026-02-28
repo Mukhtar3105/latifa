@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Латифа — 1 годик — Тұсаукесер</title>
 
-  <!-- Шрифты: благородная каллиграфия + классическая гарнитура -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
@@ -13,15 +12,15 @@
   <style>
     :root{
       --ink:#2b2b2b;
-      --muted:#6d6d6d;
       --rose:#b47a86;
       --rose2:#a96f7a;
       --card: rgba(255,255,255,.58);
-      --card2: rgba(255,255,255,.42);
-      --border: rgba(45,45,45,.28);
       --shadow: 0 10px 30px rgba(0,0,0,.08);
       --radius: 999px;
       --maxw: 540px;
+
+      /* “сила” декора на разных экранах */
+      --decorOpacity: .92;
     }
 
     *{ box-sizing:border-box; }
@@ -30,10 +29,10 @@
       margin:0;
       color:var(--ink);
       font-family: "Cormorant Garamond", serif;
-      background:#fff;
       overflow-x:hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      background:#fff;
     }
 
     /* Background */
@@ -41,14 +40,13 @@
       position:fixed;
       inset:0;
       background: url("./Background.png") center/cover no-repeat fixed;
-      z-index:-5;
+      z-index:-10;
     }
     .veil{
       position:fixed;
       inset:0;
-      background:
-        radial-gradient(1200px 800px at 50% 35%, rgba(255,255,255,.55), rgba(255,255,255,.12));
-      z-index:-4;
+      background: radial-gradient(1200px 800px at 50% 35%, rgba(255,255,255,.55), rgba(255,255,255,.12));
+      z-index:-9;
       pointer-events:none;
     }
 
@@ -58,7 +56,6 @@
       margin:0 auto;
       padding: 0 0 76px;
     }
-
     section{
       position:relative;
       padding: 26px 10px;
@@ -66,7 +63,7 @@
     }
     .center{ text-align:center; }
 
-    /* Animations */
+    /* Fade */
     .fade{
       opacity:0;
       transform: translateY(12px);
@@ -75,50 +72,9 @@
     .fade.d2{ animation-delay:.12s; }
     .fade.d3{ animation-delay:.24s; }
     .fade.d4{ animation-delay:.36s; }
+    @keyframes fadeUp{ to{ opacity:1; transform: translateY(0); } }
 
-    @keyframes fadeUp{
-      to{ opacity:1; transform: translateY(0); }
-    }
-
-    /* Decorations */
-    .decor{
-      position:absolute;
-      pointer-events:none;
-      user-select:none;
-      z-index:0;
-      will-change: transform;
-    }
-
-    /* ✅ HERO (чтобы на телефоне было как референс) */
-    .hero{
-      min-height: 100svh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding-top: 26px;
-      padding-bottom: 12px;
-      margin-top: 0;
-    }
-    .hero-inner{
-      width:100%;
-      position:relative;
-      padding-top: 40px;
-    }
-
-    /* ✅ element_5 — фон/украшение сверху в шапке */
-    .hero-decor{
-      position:absolute;
-      left:50%;
-      top:-70px;
-      transform: translateX(-50%);
-      width: min(760px, 120vw);
-      max-width: 760px;
-      opacity:.98;
-      z-index:0;
-      filter: drop-shadow(0 10px 26px rgba(0,0,0,.06));
-    }
-
-    /* Границы/карты */
+    /* Cards */
     .card{
       position:relative;
       background: var(--card);
@@ -126,7 +82,7 @@
       border-radius: 22px;
       padding: 22px 18px;
       box-shadow: var(--shadow);
-      z-index:1;
+      z-index:5; /* ✅ текст всегда выше декора */
       backdrop-filter: blur(2px);
     }
     .card.soft{
@@ -137,16 +93,7 @@
       padding: 0;
     }
 
-    /* Gentle floating animation */
-    @keyframes floaty{
-      0%,100%{ transform: translate3d(0,0,0); }
-      50%{ transform: translate3d(0,-10px,0); }
-    }
-    .float{ animation: floaty 6.5s ease-in-out infinite; }
-    .float.slow{ animation-duration: 8.2s; }
-    .float.fast{ animation-duration: 5.2s; }
-
-    /* Typography like screenshots */
+    /* Typography */
     .script{
       font-family: "Great Vibes", cursive;
       color: var(--rose);
@@ -165,13 +112,9 @@
       color: var(--rose2);
       margin: 0;
     }
-    .caps.big{
-      font-size: 20px;
-      margin-top: 14px;
-    }
-    .caps.black{
-      color: rgba(0,0,0,.72);
-    }
+    .caps.big{ font-size: 20px; margin-top: 14px; }
+    .caps.black{ color: rgba(0,0,0,.72); }
+
     .divider{
       height:1px;
       width:min(340px, 82%);
@@ -179,12 +122,54 @@
       background: rgba(0,0,0,.18);
     }
 
-    /* Scroll hint butterfly */
-    .scroll-butterfly{
-      width: 78px;
-      margin: 12px auto 0;
+    /* HERO */
+    .hero{
+      min-height: 100svh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding-top: 26px;
+      padding-bottom: 12px;
+      margin-top: 0;
+    }
+    .hero-inner{
+      width:100%;
+      position:relative;
+      padding-top: clamp(28px, 6vw, 56px);
+    }
+
+    /* ✅ element_5 (верхний большой декор) */
+    .hero-decor{
+      position:absolute;
+      left:50%;
+      top: clamp(-92px, -10vw, -58px);
+      transform: translateX(-50%);
+      width: min(820px, 128vw);
+      max-width: 820px;
+      opacity: 0.98;
+      z-index:1;
+      pointer-events:none;
+      user-select:none;
+      filter: drop-shadow(0 10px 26px rgba(0,0,0,.06));
+    }
+
+    /* ✅ element_6 кнопка-скролл */
+    .scroll-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      margin-top: 10px;
+      cursor:pointer;
+      touch-action: manipulation;
+    }
+    .scroll-btn img{
+      width: 84px;
+      height: auto;
       display:block;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,.08));
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.10));
       animation: bob 2.6s ease-in-out infinite;
     }
     @keyframes bob{
@@ -192,42 +177,48 @@
       50%{ transform: translateY(7px); opacity:1; }
     }
 
-    /* Side decors (под референс, но чтобы не ломалось на телефоне) */
-    .d-flower-left{
-      width: min(220px, 44vw);
-      left: max(-48px, -10vw);
-      bottom: -18px;
-      opacity:.96;
-      z-index:0;
+    /* ✅ DECOR SYSTEM (везде одинаковая логика, чтобы не съезжало) */
+    .decor{
+      position:absolute;
+      pointer-events:none;
+      user-select:none;
+      z-index:2;                 /* ✅ ниже карточек/текста */
+      opacity: var(--decorOpacity);
+      will-change: transform;
     }
-    .d-flower-right{
-      width: min(230px, 48vw);
-      right: max(-52px, -10vw);
-      top: 6px;
-      opacity:.96;
-      z-index:0;
+
+    @keyframes floaty{
+      0%,100%{ transform: translate3d(0,0,0); }
+      50%{ transform: translate3d(0,-10px,0); }
     }
-    .d-butterflies{
-      width: min(210px, 46vw);
-      left: max(-54px, -10vw);
-      top: 0px;
-      opacity:.92;
-      z-index:0;
+    .float{ animation: floaty 7s ease-in-out infinite; }
+    .float.slow{ animation-duration: 9s; }
+    .float.fast{ animation-duration: 5.5s; }
+
+    /* Позиции по краям: clamp + проценты => стабильно на телефонах */
+    .d-left-top{
+      left: clamp(-64px, -10vw, -18px);
+      top:  clamp(-18px, -2vw, 10px);
+      width: clamp(140px, 38vw, 220px);
     }
-    .d-leaf{
-      width: min(200px, 42vw);
-      right: max(-48px, -10vw);
-      bottom: 22px;
-      opacity:.95;
-      z-index:0;
+    .d-right-top{
+      right: clamp(-64px, -10vw, -18px);
+      top:   clamp(-14px, -2vw, 16px);
+      width: clamp(150px, 40vw, 240px);
+    }
+    .d-left-bottom{
+      left:  clamp(-70px, -12vw, -18px);
+      bottom: clamp(-34px, -6vw, -12px);
+      width: clamp(160px, 44vw, 260px);
+    }
+    .d-right-bottom{
+      right:  clamp(-70px, -12vw, -18px);
+      bottom: clamp(-28px, -6vw, -8px);
+      width: clamp(170px, 46vw, 270px);
     }
 
     /* RSVP */
-    .form{
-      display:grid;
-      gap: 12px;
-      margin-top: 10px;
-    }
+    .form{ display:grid; gap: 12px; margin-top: 10px; }
     .input{
       width:100%;
       border: 1px solid rgba(0,0,0,.22);
@@ -241,7 +232,6 @@
       border-color: rgba(180,122,134,.7);
       box-shadow: 0 0 0 3px rgba(180,122,134,.18);
     }
-
     .radios{
       display:grid;
       gap: 10px;
@@ -325,6 +315,8 @@
       border: 1px solid rgba(0,0,0,.18);
       overflow:hidden;
       background: rgba(255,255,255,.42);
+      z-index:5;
+      position:relative;
     }
     .cal-head{
       padding: 12px 14px;
@@ -375,7 +367,7 @@
       z-index:-1;
     }
 
-    /* Map block */
+    /* Map */
     .mapbtn{
       display:inline-block;
       padding: 14px 22px;
@@ -393,29 +385,16 @@
       font-size: clamp(34px, 8.5vw, 52px);
     }
 
-    /* ✅ Мобильные правки, чтобы element_5 не "кривил" композицию */
-    @media (min-width: 900px){
-      .wrap{ width:min(740px, 92vw); }
-      .hero-decor{
-        top: -90px;
-        width: 760px;
-      }
+    /* ✅ ещё читабельнее на телефонах: декор слабее */
+    @media (max-width: 520px){
+      :root{ --decorOpacity: .78; }
     }
-
-    @media (max-width: 420px){
-      .hero-decor{
-        top: -62px;
-        width: 122vw;     /* на телефонах как в референсе — шире экрана */
-        max-width: none;  /* важно */
-      }
-      .unit{ min-width: 74px; }
-      .flip{ font-size: 30px; }
-    }
-
-    /* Безопасно для очень узких */
-    @media (max-width: 360px){
+    @media (max-width: 380px){
+      :root{ --decorOpacity: .70; }
       .caps{ font-size: 16px; }
       .caps.big{ font-size: 18px; }
+      .unit{ min-width: 74px; }
+      .flip{ font-size: 30px; }
     }
   </style>
 </head>
@@ -429,7 +408,6 @@
     <!-- HERO -->
     <section class="hero center">
       <div class="hero-inner">
-        <!-- ✅ element_5 в самом начале, ровно по центру -->
         <img class="hero-decor fade" src="./element_5.png" alt="">
 
         <div class="card soft fade d2">
@@ -438,15 +416,21 @@
           <p class="caps big">Тұсаукесер</p>
           <div class="divider"></div>
           <p class="caps">Прокрутите вниз</p>
-          <img class="scroll-butterfly" src="./element_1.png" alt="">
+
+          <!-- ✅ element_6 — кнопка, кликом скроллит к RSVP -->
+          <button class="scroll-btn" id="scrollToRsvp" type="button" aria-label="Прокрутить к подтверждению присутствия">
+            <img src="./element_6.png" alt="">
+          </button>
         </div>
       </div>
     </section>
 
     <!-- INVITE TEXT -->
-    <section class="center">
-      <img class="decor d-butterflies float slow" src="./element_3.png" alt="">
-      <img class="decor d-flower-right float" src="./element_2.png" alt="">
+    <section class="center" id="invite">
+      <!-- ✅ элементы по бокам, не мешают -->
+      <img class="decor d-left-top float slow" src="./element_3.png" alt="">
+      <img class="decor d-right-top float" src="./element_2.png" alt="">
+
       <div class="card fade">
         <div class="script" style="font-size:44px; margin-top:4px;">Дорогие гости!</div>
         <p class="caps black" style="margin-top:14px;">
@@ -461,13 +445,12 @@
     </section>
 
     <!-- DATE + CALENDAR -->
-    <section class="center">
-      <img class="decor d-leaf float slow" src="./element_4.png" alt="">
-      <img class="decor d-flower-left float fast" src="./element_1.png" alt="" style="opacity:.0; display:none;">
+    <section class="center" id="date">
+      <img class="decor d-right-bottom float slow" src="./element_4.png" alt="">
+      <img class="decor d-left-bottom float fast" src="./element_1.png" alt="" style="opacity:.55;">
+
       <div class="card fade">
         <div class="script" style="font-size:44px;">Дата торжества:</div>
-
-        <!-- ✅ ДАТА: 11 апреля -->
         <p class="caps black" style="margin-top:10px;">
           11 апреля 2026 года<br>
           время 14:00
@@ -486,7 +469,10 @@
     </section>
 
     <!-- RSVP -->
-    <section class="center">
+    <section class="center" id="rsvp">
+      <img class="decor d-left-top float slow" src="./element_3.png" alt="" style="opacity:.65;">
+      <img class="decor d-right-top float" src="./element_2.png" alt="" style="opacity:.65;">
+
       <div class="card fade">
         <p class="caps black" style="font-size:18px;">
           Подтвердите, пожалуйста, своё<br>присутствие:
@@ -539,9 +525,10 @@
     </section>
 
     <!-- LOCATION -->
-    <section class="center">
-      <img class="decor d-flower-right float" src="./element_2.png" alt="" style="top:18px;">
-      <img class="decor d-butterflies float slow" src="./element_3.png" alt="" style="left:max(-54px,-10vw); top:70px;">
+    <section class="center" id="location">
+      <img class="decor d-right-top float" src="./element_2.png" alt="">
+      <img class="decor d-left-bottom float slow" src="./element_1.png" alt="" style="opacity:.65;">
+
       <div class="card fade">
         <div class="script" style="font-size:44px;">Место проведения:</div>
         <p class="caps black" style="margin-top:10px;">
@@ -569,20 +556,21 @@
   </main>
 
   <script>
-    /* =========================
-       1) КАЛЕНДАРЬ (Апрель 2026)
-       выделяем 11 число
-       ========================= */
+    /* 0) кнопка "прокрутите вниз" -> RSVP */
+    document.getElementById('scrollToRsvp')?.addEventListener('click', () => {
+      document.getElementById('rsvp')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    /* 1) КАЛЕНДАРЬ (Апрель 2026) — выделяем 11 */
     (function buildCalendar(){
       const grid = document.getElementById('calendarGrid');
-      const year = 2026, monthIndex = 3; // 0=Jan, 3=Apr
+      const year = 2026, monthIndex = 3; // Apr
       const selectedDay = 11;
 
       const first = new Date(year, monthIndex, 1);
       const last  = new Date(year, monthIndex + 1, 0);
       const daysInMonth = last.getDate();
 
-      // Monday-first
       const jsDay = first.getDay(); // 0=Sun..6=Sat
       const mondayFirst = (jsDay + 6) % 7;
 
@@ -605,13 +593,9 @@
       }
     })();
 
-    /* =========================
-       2) ОБРАТНЫЙ ОТСЧЁТ
-       11 апреля 2026, 14:00 (UTC+5)
-       ========================= */
+    /* 2) ОБРАТНЫЙ ОТСЧЁТ: 11 апреля 2026, 14:00 (UTC+5) */
     const target = new Date('2026-04-11T14:00:00+05:00');
-
-    function pad2(n){ return String(n).padStart(2,'0'); }
+    const pad2 = (n) => String(n).padStart(2,'0');
 
     function tick(){
       const now = new Date();
@@ -632,12 +616,7 @@
     tick();
     setInterval(tick, 1000);
 
-    /* =========================
-       3) СОХРАНЕНИЕ В GOOGLE SHEETS
-       Таблица: 1FuukSHtopSmB9O97vWkRT6S3yv4caehpxQeg_QytRf4
-       ========================= */
-
-    // Вставьте сюда URL Web App (после деплоя Apps Script):
+    /* 3) СОХРАНЕНИЕ В GOOGLE SHEETS */
     const APPS_SCRIPT_URL = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
 
     const form = document.getElementById('rsvpForm');
@@ -677,35 +656,34 @@
       }
     });
 
-    /* =========================
-       ✅ Google Apps Script (вставить в Apps Script)
-       =========================
-       function doPost(e) {
-         const SHEET_ID = "1FuukSHtopSmB9O97vWkRT6S3yv4caehpxQeg_QytRf4";
-         const SHEET_NAME = "Sheet1"; // поменяйте, если лист называется иначе
+    /*
+      ✅ Google Apps Script (вставить в Apps Script)
 
-         const ss = SpreadsheetApp.openById(SHEET_ID);
-         const sh = ss.getSheetByName(SHEET_NAME) || ss.getSheets()[0];
+      function doPost(e) {
+        const SHEET_ID = "1FuukSHtopSmB9O97vWkRT6S3yv4caehpxQeg_QytRf4";
+        const SHEET_NAME = "Sheet1"; // если лист иначе назван — поменяйте
 
-         const body = JSON.parse(e.postData.contents);
+        const ss = SpreadsheetApp.openById(SHEET_ID);
+        const sh = ss.getSheetByName(SHEET_NAME) || ss.getSheets()[0];
 
-         // Заголовки (создадутся 1 раз)
-         if (sh.getLastRow() === 0) {
-           sh.appendRow(["Дата/время (ISO)", "Имя", "Статус", "Страница", "User-Agent"]);
-         }
+        const body = JSON.parse(e.postData.contents);
 
-         sh.appendRow([
-           body.timestamp || new Date().toISOString(),
-           body.name || "",
-           body.attendance || "",
-           body.page || "",
-           body.userAgent || ""
-         ]);
+        if (sh.getLastRow() === 0) {
+          sh.appendRow(["Дата/время (ISO)", "Имя", "Статус", "Страница", "User-Agent"]);
+        }
 
-         return ContentService
-           .createTextOutput(JSON.stringify({ ok: true }))
-           .setMimeType(ContentService.MimeType.JSON);
-       }
+        sh.appendRow([
+          body.timestamp || new Date().toISOString(),
+          body.name || "",
+          body.attendance || "",
+          body.page || "",
+          body.userAgent || ""
+        ]);
+
+        return ContentService
+          .createTextOutput(JSON.stringify({ ok: true }))
+          .setMimeType(ContentService.MimeType.JSON);
+      }
     */
   </script>
 </body>
