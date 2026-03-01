@@ -7,7 +7,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display+SC:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display+SC:wght@700&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -16,6 +16,7 @@
   --ink:#2b2b2b;
   --card:rgba(255,255,255,.6);
 }
+
 *{box-sizing:border-box}
 body{
   margin:0;
@@ -24,46 +25,56 @@ body{
   color:var(--ink);
   overflow-x:hidden;
 }
+
 .bg{
-  position:fixed; inset:0;
+  position:fixed;
+  inset:0;
   background:url("./Background.png") center/cover no-repeat fixed;
   z-index:-3;
 }
 .veil{
-  position:fixed; inset:0;
+  position:fixed;
+  inset:0;
   background:radial-gradient(1000px 700px at 50% 30%, rgba(255,255,255,.6), rgba(255,255,255,.15));
   z-index:-2;
 }
+
 .wrap{
   max-width:580px;
   margin:auto;
-  padding-bottom:120px;
+  padding-bottom:140px;
 }
+
 section{
   position:relative;
   padding:28px 12px;
   text-align:center;
 }
+
 .card{
   background:var(--card);
   border-radius:22px;
   padding:24px 18px;
   box-shadow:0 10px 30px rgba(0,0,0,.1);
 }
+
 .script{
   font-family:"Great Vibes",cursive;
   color:var(--rose);
 }
+
 .title-name{
   font-size:76px;
   line-height:1;
 }
+
 .caps{
   text-transform:uppercase;
   letter-spacing:.14em;
   color:var(--rose2);
   font-size:20px;
 }
+
 .divider{
   height:1px;
   width:80%;
@@ -127,15 +138,23 @@ section{
   font-size:14px;
 }
 .grid div{
-  padding:14px 0;
-  font-size:20px;
+  padding:16px 0;
+  font-size:22px;
   position:relative;
 }
+
+/* 🔥 ЦИФРА 1 — ИСПРАВЛЕНА */
 .first{
   font-family:"Playfair Display SC",serif;
-  font-size:30px;
+  font-size:44px;
+  font-weight:700;
   color:var(--rose);
+  text-shadow:
+    0 6px 18px rgba(180,122,134,.35),
+    0 0 2px rgba(180,122,134,.5);
 }
+
+/* 11 */
 .sel{
   font-weight:800;
 }
@@ -144,8 +163,8 @@ section{
   position:absolute;
   inset:0;
   margin:auto;
-  width:40px;
-  height:40px;
+  width:44px;
+  height:44px;
   border-radius:50%;
   background:rgba(180,122,134,.25);
   z-index:-1;
@@ -178,18 +197,37 @@ button{
   border:none;
 }
 
-/* music */
+/* 🎵 CUSTOM MUSIC PLAYER */
 .music{
   position:fixed;
-  bottom:14px;
+  bottom:16px;
   left:50%;
   transform:translateX(-50%);
-  background:rgba(255,255,255,.9);
-  padding:6px 14px;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(6px);
   border-radius:999px;
+  padding:8px 16px;
   box-shadow:0 8px 20px rgba(0,0,0,.15);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  z-index:10;
 }
-.music audio{width:260px}
+.music button{
+  border:none;
+  background:var(--rose);
+  color:#fff;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  font-size:18px;
+  cursor:pointer;
+}
+.music span{
+  font-size:14px;
+  letter-spacing:.08em;
+  color:var(--rose2);
+}
 </style>
 </head>
 
@@ -200,8 +238,8 @@ button{
 <main class="wrap">
 
 <section>
-<img src="./element_5.png" class="decor dl">
-<img src="./element_2.png" class="decor dr">
+<img src="./element_2.png" class="decor dl">
+<img src="./element_3.png" class="decor dr">
 <div class="card">
   <div class="script title-name">Латифа</div>
   <p class="caps">1 годик</p>
@@ -213,7 +251,7 @@ button{
 </section>
 
 <section>
-<img src="./element_3.png" class="decor db">
+<img src="./element_4.png" class="decor db">
 <div class="card">
   <div class="script date-title">Дата торжества</div>
   <div class="date-main">
@@ -256,13 +294,40 @@ button{
 
 </main>
 
-<div class="music">
-<audio controls autoplay loop>
+<!-- 🎵 Audio -->
+<audio id="bgMusic" loop>
   <source src="./Серік Ибрагимов feat. Еркеш Хасен - Қызым (Live).mp3" type="audio/mpeg">
 </audio>
+
+<div class="music">
+  <button id="musicBtn">❚❚</button>
+  <span>Қызым • Live</span>
 </div>
 
 <script>
+const music = document.getElementById("bgMusic");
+const btn = document.getElementById("musicBtn");
+
+/* autoplay (Android/desktop) */
+music.play().catch(()=>{});
+
+/* iOS fallback: play on first touch */
+document.addEventListener("click",()=>{
+  if(music.paused) music.play().catch(()=>{});
+},{once:true});
+
+/* toggle */
+btn.onclick=()=>{
+  if(music.paused){
+    music.play();
+    btn.textContent="❚❚";
+  }else{
+    music.pause();
+    btn.textContent="▶";
+  }
+};
+
+/* scroll */
 document.getElementById("scrollToForm").onclick=()=>{
   document.getElementById("rsvp").scrollIntoView({behavior:"smooth"});
 };
