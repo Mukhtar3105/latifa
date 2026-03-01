@@ -233,7 +233,6 @@
       z-index:-1;
     }
 
-    /* ✅ Бабочка ЗА цифрой 11 — ровно по центру */
     .butterfly-behind{
       position:absolute;
       left:50%;
@@ -251,7 +250,6 @@
       50%{ transform:translate(-50%,-66%) rotate(3deg); }
     }
 
-    /* RSVP Form */
     .form{
       display:grid;
       gap: 12px;
@@ -312,7 +310,6 @@
       margin-top: 2px;
     }
 
-    /* Countdown */
     .countdown{ margin-top: 18px; text-align:center; }
     .count-title{
       text-align:center;
@@ -347,7 +344,6 @@
       color: rgba(0,0,0,.55);
     }
 
-    /* Footer note */
     .footer-note{
       margin-top: 10px;
       font-size: 16px;
@@ -357,7 +353,6 @@
       line-height: 1.6;
     }
 
-    /* Decorations */
     .decor{
       position:absolute;
       pointer-events:none;
@@ -372,7 +367,6 @@
     .d3{ width:min(190px, 42vw); left:-50px; bottom: 8px; }
     .d4{ width:min(200px, 44vw); right:-52px; bottom: 6px; }
 
-    /* ✅ ДОБАВИЛ: больше цветочков по бокам */
     .d5{ width:min(180px, 38vw); left:-60px; top: 42%; opacity:.85; }
     .d6{ width:min(190px, 40vw); right:-64px; top: 44%; opacity:.85; }
     .d7{ width:min(160px, 34vw); left:-58px; top: 62%; opacity:.80; }
@@ -386,7 +380,6 @@
     .float.slow{ animation-duration: 9.2s; }
     .float.fast{ animation-duration: 5.6s; }
 
-    /* Music modal + control */
     .music-modal{
       position:fixed;
       inset:0;
@@ -515,12 +508,10 @@
   <div class="bg"></div>
   <div class="veil"></div>
 
-  <!-- ✅ Музыка (файл рядом с html) -->
   <audio id="bgm" preload="auto" loop>
     <source src="./Erkesh_Hasen_-_yzym_(SkySound.cc).mp3" type="audio/mpeg">
   </audio>
 
-  <!-- ✅ Окно Да/Нет -->
   <div class="music-modal" id="musicModal" aria-hidden="true">
     <div class="music-sheet">
       <div class="music-top">
@@ -539,7 +530,6 @@
     </div>
   </div>
 
-  <!-- Floating music control -->
   <div class="music-fab" id="musicFab" style="display:none;">
     <button type="button" id="musicToggle" aria-label="Музыка">
       <svg class="icon" id="musicIcon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -551,20 +541,15 @@
 
   <main class="wrap">
 
-    <!-- 1) HERO -->
     <section>
-      <!-- существующие -->
       <img class="decor d2 float slow" src="./element_2.png" alt="">
       <img class="decor d1 float" src="./element_3.png" alt="">
-
-      <!-- ✅ ДОБАВИЛ: больше цветочков по бокам -->
       <img class="decor d5 float fast" src="./element_1.png" alt="">
       <img class="decor d6 float" src="./element_4.png" alt="">
       <img class="decor d7 float slow" src="./element_3.png" alt="">
       <img class="decor d8 float fast" src="./element_2.png" alt="">
 
       <div class="card">
-        <!-- ✅ Ваше изображение с текстом -->
         <img src="./element_7.png" alt="Латифа 1 годик Тұсаукесер" style="display:block;max-width:100%;margin:6px auto 10px;">
 
         <div class="divider"></div>
@@ -574,7 +559,6 @@
       </div>
     </section>
 
-    <!-- 2) INVITE -->
     <section>
       <img class="decor d3 float fast" src="./element_1.png" alt="">
       <img class="decor d4 float slow" src="./element_4.png" alt="">
@@ -589,7 +573,6 @@
       </div>
     </section>
 
-    <!-- 3) PLACE -->
     <section>
       <img class="decor d2 float" src="./element_2.png" alt="">
       <img class="decor d1 float slow" src="./element_3.png" alt="" style="top:auto; bottom:10px;">
@@ -611,7 +594,6 @@
       </div>
     </section>
 
-    <!-- 4) DATE + CALENDAR -->
     <section>
       <img class="decor d4 float slow" src="./element_4.png" alt="">
       <div class="card">
@@ -632,7 +614,6 @@
       </div>
     </section>
 
-    <!-- 5) RSVP + COUNTDOWN -->
     <section id="rsvp">
       <img class="decor d3 float" src="./element_1.png" alt="">
       <div class="card">
