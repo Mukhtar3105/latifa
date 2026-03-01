@@ -16,11 +16,9 @@
   --rose2:#a96f7a;
   --card:rgba(255,255,255,.65);
   --shadow:0 12px 32px rgba(0,0,0,.12);
-  --maxw:580px;
 }
 
 *{box-sizing:border-box}
-html,body{height:100%}
 body{
   margin:0;
   font-family:"Cormorant Garamond",serif;
@@ -28,7 +26,7 @@ body{
   overflow-x:hidden;
 }
 
-/* background */
+/* ===== BACKGROUND ===== */
 .bg{
   position:fixed; inset:0;
   background:url("./Background.png") center/cover no-repeat;
@@ -36,14 +34,14 @@ body{
 }
 .veil{
   position:fixed; inset:0;
-  background:radial-gradient(1200px 800px at 50% 30%, rgba(255,255,255,.72), rgba(255,255,255,.18));
+  background:radial-gradient(1200px 800px at 50% 30%, rgba(255,255,255,.75), rgba(255,255,255,.18));
   z-index:-2;
 }
 
 .wrap{
-  width:min(var(--maxw),92vw);
-  margin:0 auto;
-  padding:20px 0 180px;
+  max-width:580px;
+  margin:auto;
+  padding:20px 0 220px;
 }
 
 section{
@@ -52,7 +50,6 @@ section{
   text-align:center;
 }
 
-/* card */
 .card{
   background:var(--card);
   border-radius:22px;
@@ -61,7 +58,7 @@ section{
   backdrop-filter: blur(2px);
 }
 
-/* decor */
+/* ===== DECOR ===== */
 .decor{
   position:absolute;
   pointer-events:none;
@@ -72,11 +69,11 @@ section{
   0%,100%{transform:translateY(0)}
   50%{transform:translateY(-10px)}
 }
-.dl{left:-64px;top:20px;width:220px}
+.dl{left:-70px;top:30px;width:230px}
 .dr{right:-70px;top:40px;width:230px}
-.db{left:-70px;bottom:-20px;width:240px}
+.db{left:-80px;bottom:-30px;width:260px}
 
-/* text */
+/* ===== TEXT ===== */
 .script{font-family:"Great Vibes",cursive;color:var(--rose);}
 .title-name{font-size:78px;line-height:1}
 .caps{
@@ -86,8 +83,6 @@ section{
   font-size:20px;
   margin:0;
 }
-
-/* decorative 1 */
 .one-decor{
   font-family:"Great Vibes",cursive;
   font-size:56px;
@@ -102,7 +97,7 @@ section{
   background:rgba(0,0,0,.2);
 }
 
-/* hero butterfly */
+/* ===== BUTTERFLY HERO ===== */
 .hero-butterfly{
   width:96px;
   margin:14px auto 0;
@@ -114,32 +109,16 @@ section{
   50%{transform:translateY(8px)}
 }
 
-/* invite text */
+/* ===== INVITE ===== */
 .invite{
   font-size:22px;
-  letter-spacing:.10em;
+  letter-spacing:.1em;
   text-transform:uppercase;
   margin-top:16px;
   line-height:1.6;
-  color:rgba(0,0,0,.78);
 }
 
-/* date */
-.date-title{font-size:48px}
-.date-main{
-  font-size:26px;
-  font-weight:600;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  margin-top:12px;
-}
-.date-time{
-  display:block;
-  margin-top:6px;
-  font-size:24px;
-}
-
-/* calendar */
+/* ===== CALENDAR ===== */
 .cal{
   margin-top:18px;
   border-radius:18px;
@@ -153,32 +132,32 @@ section{
   font-size:22px;
   position:relative;
 }
+.grid .sel{
+  font-weight:700;
+}
 .grid .sel::after{
   content:"";
   position:absolute;
-  inset:0;
-  margin:auto;
-  width:46px;
-  height:46px;
+  left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  width:48px;height:48px;
   border-radius:50%;
   background:rgba(180,122,134,.25);
   z-index:-1;
 }
+
+/* 🦋 бабочка ЧЁТКО по центру */
 .butterfly-behind{
   position:absolute;
   left:50%;top:50%;
-  width:58px;
-  transform:translate(-50%,-78%);
+  transform:translate(-50%,-70%);
+  width:56px;
   z-index:-2;
   animation:float 3s ease-in-out infinite;
 }
 
-/* form */
-.form{
-  display:grid;
-  gap:14px;
-  margin-top:14px;
-}
+/* ===== FORM ===== */
+.form{display:grid;gap:14px;margin-top:14px}
 .input{
   padding:14px 16px;
   border-radius:999px;
@@ -195,23 +174,44 @@ section{
   letter-spacing:.12em;
 }
 
-/* map */
-.mapbtn{
-  display:inline-block;
-  margin-top:16px;
-  padding:15px 22px;
+/* ===== MUSIC ===== */
+.music-hint{
+  position:fixed;
+  bottom:92px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(255,255,255,.9);
+  padding:10px 16px;
   border-radius:999px;
-  background:rgba(180,122,134,.86);
-  color:#fff;
-  text-decoration:none;
-  text-transform:uppercase;
-  letter-spacing:.12em;
+  font-size:14px;
+  box-shadow:0 8px 20px rgba(0,0,0,.18);
+  display:none;
 }
 
-/* signature */
-.sign{
-  margin-top:26px;
-  font-size:56px;
+.music{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(255,255,255,.9);
+  padding:10px 16px;
+  border-radius:999px;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  box-shadow:0 10px 24px rgba(0,0,0,.18);
+}
+.music button{
+  width:42px;height:42px;
+  border-radius:50%;
+  border:none;
+  cursor:pointer;
+}
+.play{background:var(--rose);color:#fff}
+.stop{
+  background:transparent;
+  border:1px solid rgba(180,122,134,.4);
+  color:var(--rose2);
 }
 </style>
 </head>
@@ -236,7 +236,7 @@ section{
 </div>
 </section>
 
-<!-- INVITE TEXT -->
+<!-- INVITE -->
 <section>
 <img src="./element_1.png" class="decor dl">
 <img src="./element_4.png" class="decor dr">
@@ -256,17 +256,17 @@ section{
 <!-- LOCATION -->
 <section>
 <div class="card">
-  <div class="script date-title">Место проведения:</div>
-  <div class="invite" style="margin-top:12px">
+  <div class="script" style="font-size:46px">Место проведения</div>
+  <div class="invite">
     Город Алматы<br>
     улица Керей – Жанибек Хандар, 8<br>
     ресторан «Sabroso»
   </div>
-  <a class="mapbtn" target="_blank"
+  <a class="btn" target="_blank"
      href="https://2gis.kz/almaty/search/Sabroso%20%D0%9A%D0%B5%D1%80%D0%B5%D0%B9%20%D0%96%D0%B0%D0%BD%D0%B8%D0%B1%D0%B5%D0%BA%20%D1%85%D0%B0%D0%BD%D0%B4%D0%B0%D1%80%208">
     Открыть карту
   </a>
-  <div class="script sign">Болат – Зара</div>
+  <div class="script" style="font-size:54px;margin-top:22px">Болат – Зара</div>
 </div>
 </section>
 
@@ -274,10 +274,10 @@ section{
 <section>
 <img src="./element_3.png" class="decor db">
 <div class="card">
-  <div class="script date-title">Дата торжества:</div>
-  <div class="date-main">
-    11 апреля 2026 года
-    <span class="date-time">время 14:00</span>
+  <div class="script" style="font-size:46px">Дата торжества</div>
+  <div class="invite">
+    11 апреля 2026 года<br>
+    время 14:00
   </div>
 
   <div class="cal">
@@ -311,6 +311,52 @@ section{
 </div>
 </section>
 
+<!-- FOOTER TEXT -->
+<section>
+<div class="card">
+  <div class="invite">
+    С нетерпением ждём Вас<br>
+    и будем рады Вашему визиту 🤍
+  </div>
+</div>
+</section>
+
 </main>
+
+<!-- 🎵 AUDIO -->
+<audio id="music" muted autoplay loop playsinline>
+  <source src="./Серік Ибрагимов feat. Еркеш Хасен - Қызым (Live).mp3">
+</audio>
+
+<div class="music-hint" id="musicHint">Нажмите, чтобы включить музыку 🎵</div>
+
+<div class="music">
+  <button class="play" onclick="toggle()">❚❚</button>
+  <button class="stop" onclick="stopMusic()">✕</button>
+</div>
+
+<script>
+const music = document.getElementById("music");
+const hint = document.getElementById("musicHint");
+
+setTimeout(()=>hint.style.display="block",2000);
+
+document.addEventListener("click",()=>{
+  if(music.muted){
+    music.muted=false;
+    music.play().catch(()=>{});
+    hint.style.display="none";
+  }
+},{once:true});
+
+function toggle(){
+  music.paused ? music.play() : music.pause();
+}
+function stopMusic(){
+  music.pause();
+  music.currentTime=0;
+}
+</script>
+
 </body>
 </html>
