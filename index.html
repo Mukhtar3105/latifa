@@ -580,14 +580,9 @@
       <img class="decor d2 float slow" src="./element_2.png" alt="">
       <img class="decor d1 float" src="./element_3.png" alt="">
       <div class="card">
-        <div class="script title-name">Латифа</div>
 
-        <div class="yearline" aria-label="1 годик">
-          <span class="digit-one">1</span>
-          <span class="yearword">годик</span>
-        </div>
-
-        <p class="caps" style="margin-top:10px;">Тұсаукесер</p>
+        <!-- ✅ ЗАМЕНА ТЕКСТА НА КАРТИНКУ -->
+        <img src="./title.png" alt="Латифа 1 годик Тұсаукесер" style="display:block;max-width:100%;margin:6px auto 10px;">
 
         <div class="divider"></div>
 
@@ -672,7 +667,6 @@
               Обязательно приду
             </label>
 
-            <!-- ✅ ВОТ ОНА: "со второй половинкой" -->
             <label class="radio">
               <input type="radio" name="attendance" value="Приду со второй половинкой">
               Приду со второй половинкой
@@ -720,21 +714,17 @@
   </main>
 
   <script>
-    /* =========================================================
-       1) КАЛЕНДАРЬ: Апрель 2026, выделяем 11 (весь месяц)
-       ========================================================= */
     (function buildCalendar(){
       const grid = document.getElementById('calendarGrid');
       grid.innerHTML = "";
 
-      const year = 2026, monthIndex = 3; // 0=Jan, 3=Apr
+      const year = 2026, monthIndex = 3;
       const selectedDay = 11;
 
       const first = new Date(year, monthIndex, 1);
       const last  = new Date(year, monthIndex + 1, 0);
       const daysInMonth = last.getDate();
 
-      // JS: 0=Sun..6=Sat -> Monday-first
       const jsDay = first.getDay();
       const mondayFirst = (jsDay + 6) % 7;
 
@@ -764,18 +754,12 @@
       }
     })();
 
-    /* =========================================================
-       2) СКРОЛЛ: бабочка/текст “Прокрутите вниз” -> к форме
-       ========================================================= */
     function scrollToRSVP(){
       document.getElementById('rsvp').scrollIntoView({behavior:'smooth', block:'start'});
     }
     document.getElementById('scrollToForm1').addEventListener('click', scrollToRSVP);
     document.getElementById('scrollToForm2').addEventListener('click', scrollToRSVP);
 
-    /* =========================================================
-       3) COUNTDOWN: 11 апреля 2026, 14:00 (UTC+5)
-       ========================================================= */
     const target = new Date('2026-04-11T14:00:00+05:00');
     const pad2 = n => String(n).padStart(2,'0');
 
@@ -798,9 +782,6 @@
     tick();
     setInterval(tick, 1000);
 
-    /* =========================================================
-       4) MUSIC: автозапуск + окно Да/Нет + плавающая кнопка
-       ========================================================= */
     const bgm = document.getElementById('bgm');
     const modal = document.getElementById('musicModal');
     const btnYes = document.getElementById('musicYes');
@@ -820,14 +801,12 @@
     async function tryAutoPlay(){
       fab.style.display = 'flex';
 
-      const pref = localStorage.getItem('music_pref'); // "yes" | "no" | null
+      const pref = localStorage.getItem('music_pref');
       if(pref === 'no'){ setIcon(false); return; }
 
-      // попытка автозапуска
       try{
         await bgm.play();
         setIcon(true);
-        // не принуждаем сохранять "yes" без согласия
       }catch(e){
         modal.classList.add('show');
         modal.setAttribute('aria-hidden','false');
@@ -871,9 +850,6 @@
 
     window.addEventListener('load', tryAutoPlay);
 
-    /* =========================================================
-       5) RSVP -> Google Sheets (Apps Script Web App)
-       ========================================================= */
     const APPS_SCRIPT_URL = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
     const form = document.getElementById('rsvpForm');
     const statusEl = document.getElementById('status');
