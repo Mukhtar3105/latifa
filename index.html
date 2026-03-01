@@ -1,224 +1,162 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Латифа — 1 годик — Тұсаукесер</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --ink:#2b2b2b;
-      --rose:#b47a86;
-      --rose2:#a96f7a;
-      --card: rgba(255,255,255,.58);
-      --shadow: 0 10px 30px rgba(0,0,0,.08);
-      --maxw: 560px;
-    }
+<style>
+:root{
+  --rose:#b47a86;
+  --rose2:#a96f7a;
+  --card:rgba(255,255,255,.58);
+  --shadow:0 10px 30px rgba(0,0,0,.08);
+}
+body{
+  margin:0;
+  font-family:"Cormorant Garamond",serif;
+  background:#fff;
+}
+.bg{
+  position:fixed; inset:0;
+  background:url("./Background.png") center/cover no-repeat fixed;
+  z-index:-3;
+}
+.veil{
+  position:fixed; inset:0;
+  background:radial-gradient(1200px 800px at 50% 35%, rgba(255,255,255,.55), rgba(255,255,255,.15));
+  z-index:-2;
+}
+.wrap{
+  max-width:560px;
+  margin:auto;
+  padding-bottom:80px;
+}
+section{
+  position:relative;
+  padding:28px 12px;
+  text-align:center;
+}
+.card{
+  background:var(--card);
+  border-radius:22px;
+  padding:24px 18px;
+  box-shadow:var(--shadow);
+}
+.script{
+  font-family:"Great Vibes",cursive;
+  color:var(--rose);
+}
+.title-name{
+  font-size:clamp(52px,10vw,74px);
+}
+.caps{
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--rose2);
+  font-size:20px;
+}
+.divider{
+  height:1px;
+  width:80%;
+  margin:18px auto;
+  background:rgba(0,0,0,.2);
+}
 
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family: "Cormorant Garamond", serif;
-      color:var(--ink);
-      background:#fff;
-      overflow-x:hidden;
-    }
+/* ===== DECOR ===== */
+.decor{
+  position:absolute;
+  pointer-events:none;
+  opacity:.55;
+}
+.d1{ left:-40px; top:40px; width:160px; }
+.d2{ right:-40px; top:60px; width:180px; }
+.d3{ left:-50px; bottom:30px; width:180px; }
+.d4{ right:-40px; bottom:40px; width:170px; }
 
-    .bg{
-      position:fixed;
-      inset:0;
-      background:url("./Background.png") center/cover no-repeat fixed;
-      z-index:-2;
-    }
-    .veil{
-      position:fixed;
-      inset:0;
-      background:radial-gradient(1200px 800px at 50% 35%, rgba(255,255,255,.55), rgba(255,255,255,.15));
-      z-index:-1;
-    }
+/* ===== HERO ===== */
+.hero-butterfly{
+  width:90px;
+  margin:8px auto 0;
+  cursor:pointer;
+  animation:bob 2.6s ease-in-out infinite;
+}
+@keyframes bob{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(7px)}
+}
+.scroll-text{ margin-top:20px }
 
-    .wrap{
-      width:min(var(--maxw),92vw);
-      margin:0 auto;
-      padding-bottom:80px;
-    }
+/* ===== DATE ===== */
+.date-title{ font-size:50px }
+.date-main{
+  font-size:26px;
+  font-weight:600;
+  letter-spacing:.12em;
+}
+.date-time{ display:block; font-size:24px }
 
-    section{
-      position:relative;
-      padding:26px 10px;
-      margin:16px auto;
-      text-align:center;
-    }
+/* ===== CALENDAR ===== */
+.cal{ margin-top:18px; border-radius:18px; overflow:hidden; background:rgba(255,255,255,.45) }
+.cal-head{ padding:12px; font-size:20px }
+.dow,.grid{ display:grid; grid-template-columns:repeat(7,1fr) }
+.grid div{ padding:12px 0; position:relative }
+.sel{ font-weight:700 }
+.sel::after{
+  content:""; position:absolute; inset:0;
+  margin:auto; width:36px; height:36px;
+  border-radius:50%;
+  background:rgba(180,122,134,.2);
+  z-index:-1;
+}
+.butterfly-behind{
+  position:absolute; left:50%; top:50%;
+  width:52px;
+  transform:translate(-50%,-65%);
+  z-index:-2;
+  animation:flutter 3s ease-in-out infinite;
+}
+@keyframes flutter{
+  0%,100%{transform:translate(-50%,-65%)}
+  50%{transform:translate(-50%,-75%)}
+}
 
-    .card{
-      background:var(--card);
-      border-radius:22px;
-      padding:24px 18px;
-      box-shadow:var(--shadow);
-    }
+/* ===== FORM ===== */
+form{ display:grid; gap:14px; margin-top:14px }
+input,button{
+  padding:14px;
+  border-radius:999px;
+  border:1px solid rgba(0,0,0,.2);
+  font-size:18px;
+}
+button{
+  background:var(--rose);
+  color:#fff;
+  border:none;
+  cursor:pointer;
+}
+label{ font-size:18px }
 
-    .script{
-      font-family:"Great Vibes",cursive;
-      color:var(--rose);
-    }
-
-    .title-name{
-      font-size:clamp(50px,10vw,72px);
-      line-height:1;
-    }
-
-    .caps{
-      text-transform:uppercase;
-      letter-spacing:.14em;
-      color:var(--rose2);
-      font-size:20px;
-      margin:0;
-    }
-
-    .divider{
-      height:1px;
-      width:80%;
-      margin:18px auto;
-      background:rgba(0,0,0,.18);
-    }
-
-    /* ====== HERO spacing (чтобы "прокрутите вниз" было ниже) ====== */
-    .hero-butterfly{
-      display:block;
-      width:92px;
-      margin: 8px auto 0;
-      animation: bob 2.6s ease-in-out infinite;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,.08));
-    }
-    .scroll-text{
-      margin-top: 18px; /* ниже ниже */
-    }
-    @keyframes bob{
-      0%,100%{ transform: translateY(0); opacity:.95; }
-      50%{ transform: translateY(7px); opacity:1; }
-    }
-
-    /* ====== ДАТЫ (УСИЛЕНЫ) ====== */
-    .date-title{ font-size:50px; }
-    .date-main{
-      margin-top:14px;
-      font-size:26px;
-      font-weight:600;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color:rgba(0,0,0,.78);
-      line-height:1.45;
-    }
-    .date-time{
-      display:block;
-      margin-top:6px;
-      font-size:24px;
-      font-weight:600;
-      letter-spacing:.12em;
-      color:rgba(0,0,0,.75);
-    }
-
-    /* ====== КАЛЕНДАРЬ ====== */
-    .cal{
-      width:100%;
-      margin-top:18px;
-      border-radius:18px;
-      border:1px solid rgba(0,0,0,.18);
-      overflow:hidden;
-      background:rgba(255,255,255,.45);
-    }
-    .cal-head{
-      padding:12px;
-      font-size:20px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      background:rgba(255,255,255,.25);
-    }
-    .dow,.grid{
-      display:grid;
-      grid-template-columns:repeat(7,1fr);
-    }
-    .dow div{
-      font-size:14px;
-      padding:10px 0;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      background:rgba(255,255,255,.25);
-    }
-    .grid div{
-      padding:12px 0;
-      border-top:1px solid rgba(0,0,0,.08);
-      font-size:17px;
-      position:relative;
-      z-index:0;
-    }
-
-    /* Выделение дня */
-    .grid .sel{
-      font-weight:700;
-      z-index:0;
-    }
-    .grid .sel::after{
-      content:"";
-      position:absolute;
-      left:50%;
-      top:50%;
-      width:36px;
-      height:36px;
-      transform:translate(-50%,-50%);
-      border-radius:50%;
-      background:rgba(180,122,134,.20);
-      z-index:-1;
-    }
-
-    /* ✅ Бабочка ЗА цифрой 11 */
-    .butterfly-behind{
-      position:absolute;
-      left:50%;
-      top:50%;
-      width:52px;
-      transform: translate(-50%,-65%);
-      z-index:-2; /* ниже цифры и ниже круга */
-      opacity:.95;
-      animation:flutter 3s ease-in-out infinite;
-      pointer-events:none;
-    }
-    @keyframes flutter{
-      0%,100%{ transform:translate(-50%,-65%) rotate(-2deg); }
-      50%{ transform:translate(-50%,-75%) rotate(3deg); }
-    }
-
-    /* ====== КАРТА ====== */
-    .mapbtn{
-      display:inline-block;
-      margin-top:16px;
-      padding:15px 22px;
-      border-radius:999px;
-      background:rgba(180,122,134,.78);
-      color:#fff;
-      text-decoration:none;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      font-size:18px;
-      box-shadow:0 12px 24px rgba(180,122,134,.22);
-    }
-
-    .sign{
-      margin-top:28px;
-      font-size:clamp(38px,9vw,58px);
-    }
-
-    @media(max-width:420px){
-      .date-main{ font-size:24px; }
-      .date-time{ font-size:22px; }
-      .date-title{ font-size:46px; }
-      .hero-butterfly{ width:86px; }
-    }
-  </style>
+/* ===== MAP ===== */
+.mapbtn{
+  display:inline-block;
+  margin-top:16px;
+  padding:14px 22px;
+  border-radius:999px;
+  background:var(--rose);
+  color:#fff;
+  text-decoration:none;
+  letter-spacing:.12em;
+}
+.sign{
+  margin-top:28px;
+  font-size:clamp(38px,9vw,58px);
+}
+</style>
 </head>
 
 <body>
@@ -227,73 +165,91 @@
 
 <main class="wrap">
 
-  <!-- HERO -->
-  <section>
-    <div class="card">
-      <div class="script title-name">Латифа</div>
-      <p class="caps">1 годик</p>
-      <p class="caps">Тұсаукесер</p>
+<!-- HERO -->
+<section>
+  <img src="./element_1.png" class="decor d1">
+  <img src="./element_2.png" class="decor d2">
 
-      <div class="divider"></div>
+  <div class="card">
+    <div class="script title-name">Латифа</div>
+    <p class="caps">1 годик</p>
+    <p class="caps">Тұсаукесер</p>
+    <div class="divider"></div>
 
-      <!-- бабочка -->
-      <img src="./element_6.png" class="hero-butterfly" alt="">
+    <img src="./element_6.png" class="hero-butterfly" id="scrollToForm">
+    <p class="caps scroll-text">Прокрутите вниз</p>
+  </div>
+</section>
 
-      <!-- ✅ текст ниже ниже -->
-      <p class="caps scroll-text">Прокрутите вниз</p>
+<!-- DATE -->
+<section>
+  <img src="./element_3.png" class="decor d3">
+  <img src="./element_4.png" class="decor d4">
+
+  <div class="card">
+    <div class="script date-title">Дата торжества:</div>
+    <div class="date-main">
+      11 апреля 2026 года
+      <span class="date-time">время 14:00</span>
     </div>
-  </section>
 
-  <!-- ДАТА -->
-  <section>
-    <div class="card">
-      <div class="script date-title">Дата торжества:</div>
-      <div class="date-main">
-        11 апреля 2026 года
-        <span class="date-time">время 14:00</span>
-      </div>
-
-      <div class="cal">
-        <div class="cal-head">Апрель 2026</div>
-        <div class="dow">
-          <div>пн</div><div>вт</div><div>ср</div><div>чт</div><div>пт</div><div>сб</div><div>вс</div>
-        </div>
-
-        <div class="grid">
-          <div></div><div></div><div></div><div>1</div><div>2</div><div>3</div><div>4</div>
-          <div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div>
-
-          <!-- ✅ 11 число: бабочка ЗА цифрой -->
-          <div class="sel">
-            <img src="./element_6.png" class="butterfly-behind" alt="">
-            11
-          </div>
-
-          <div>12</div><div>13</div><div>14</div><div>15</div><div>16</div><div>17</div><div>18</div>
+    <div class="cal">
+      <div class="cal-head">Апрель 2026</div>
+      <div class="grid">
+        <div></div><div></div><div></div><div>1</div><div>2</div><div>3</div><div>4</div>
+        <div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div>
+        <div class="sel">
+          <img src="./element_6.png" class="butterfly-behind">
+          11
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- МЕСТО -->
-  <section>
-    <div class="card">
-      <div class="script date-title">Место проведения:</div>
-      <p class="date-main">
-        Город Алматы<br>
-        улица Керей – Жанибек Хандар, 8<br>
-        ресторан «Sabroso»
-      </p>
+<!-- LOCATION -->
+<section>
+  <div class="card">
+    <div class="script date-title">Место проведения:</div>
+    <p class="date-main">
+      Город Алматы<br>
+      улица Керей – Жанибек Хандар, 8<br>
+      ресторан «Sabroso»
+    </p>
 
-      <a class="mapbtn" target="_blank" rel="noopener"
-         href="https://2gis.kz/almaty/search/Sabroso%20%D0%9A%D0%B5%D1%80%D0%B5%D0%B9%20%D0%96%D0%B0%D0%BD%D0%B8%D0%B1%D0%B5%D0%BA%20%D1%85%D0%B0%D0%BD%D0%B4%D0%B0%D1%80%208?m=76.962332%2C43.237115%2F19.87">
-        Открыть карту
-      </a>
+    <a class="mapbtn" target="_blank"
+       href="https://2gis.kz/almaty/search/Sabroso%20%D0%9A%D0%B5%D1%80%D0%B5%D0%B9%20%D0%96%D0%B0%D0%BD%D0%B8%D0%B1%D0%B5%D0%BA%20%D1%85%D0%B0%D0%BD%D0%B4%D0%B0%D1%80%208">
+      Открыть карту
+    </a>
 
-      <div class="script sign">С уважением,<br>Болат – Зара</div>
-    </div>
-  </section>
+    <div class="script sign">С уважением,<br>Болат – Зара</div>
+  </div>
+</section>
+
+<!-- RSVP FORM -->
+<section id="rsvp">
+  <div class="card">
+    <p class="caps">Подтвердите присутствие</p>
+
+    <form>
+      <input type="text" placeholder="Ваше имя" required>
+
+      <label><input type="radio" name="att" required> Обязательно приду</label>
+      <label><input type="radio" name="att"> Приду со второй половинкой</label>
+      <label><input type="radio" name="att"> Не смогу присутствовать</label>
+
+      <button type="submit">Отправить</button>
+    </form>
+  </div>
+</section>
 
 </main>
+
+<script>
+document.getElementById("scrollToForm").onclick = () => {
+  document.getElementById("rsvp").scrollIntoView({behavior:"smooth"});
+};
+</script>
+
 </body>
 </html>
