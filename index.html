@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Латифа — 1 годик — Тұсаукесер</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,197 +11,97 @@
 
 <style>
 :root{
-  --ink:#2b2b2b;
   --rose:#b47a86;
   --rose2:#a96f7a;
-  --card:rgba(255,255,255,.62);
-  --shadow:0 16px 40px rgba(0,0,0,.10);
-  --shadow2:0 12px 26px rgba(180,122,134,.22);
-  --maxw:560px;
 }
-
-*{box-sizing:border-box}
 body{
   margin:0;
   font-family:"Cormorant Garamond",serif;
-  color:var(--ink);
+  background:#fff;
   overflow-x:hidden;
 }
-
 .bg{position:fixed;inset:0;background:url("./Background.png") center/cover no-repeat;z-index:-3}
-.veil{position:fixed;inset:0;background:radial-gradient(1200px 800px at 50% 30%, rgba(255,255,255,.62), rgba(255,255,255,.12));z-index:-2}
-
-.wrap{width:min(var(--maxw),92vw);margin:auto;padding:24px 0 120px}
-section{position:relative;padding:22px 10px;margin:14px auto;text-align:center}
-
+.veil{position:fixed;inset:0;background:radial-gradient(1200px 800px at 50% 30%, rgba(255,255,255,.65), rgba(255,255,255,.15));z-index:-2}
+.wrap{width:min(560px,92vw);margin:auto;padding:24px 0 120px}
+section{padding:24px 10px;text-align:center}
 .card{
-  position:relative;
-  background:var(--card);
+  background:rgba(255,255,255,.65);
   border-radius:26px;
   padding:26px 18px;
-  box-shadow:var(--shadow);
-  overflow:hidden;
+  box-shadow:0 16px 40px rgba(0,0,0,.1);
 }
-
-/* декор */
-.decor{
-  position:absolute;
-  pointer-events:none;
-  opacity:.9;
-  filter:drop-shadow(0 10px 20px rgba(0,0,0,.08));
-}
-.d1{width:220px;left:-60px;top:10px;animation:float 8s ease-in-out infinite}
-.d2{width:240px;right:-70px;top:20px;animation:float 10s ease-in-out infinite}
-.d3{width:200px;left:-60px;bottom:10px;animation:float 7s ease-in-out infinite}
-.d4{width:220px;right:-60px;bottom:10px;animation:float 9s ease-in-out infinite}
-
-@keyframes float{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-12px)}
-}
-
-/* typography */
 .script{font-family:"Great Vibes",cursive;color:var(--rose)}
-.title-name{font-size:72px}
-.caps{text-transform:uppercase;letter-spacing:.14em;color:var(--rose2);font-size:20px;margin:0}
+.caps{text-transform:uppercase;letter-spacing:.14em;color:var(--rose2);font-size:20px}
 
-.yearline{display:flex;justify-content:center;gap:10px;margin-top:10px}
+.title-name{font-size:72px}
+.yearline{display:flex;justify-content:center;gap:10px}
 .digit-one{
   font-family:"Cinzel",serif;
-  font-size:38px;
-  font-weight:600;
-  color:rgba(180,122,134,.95);
-  text-shadow:0 8px 20px rgba(180,122,134,.25);
-}
-.yearword{font-size:20px;letter-spacing:.14em;text-transform:uppercase;color:var(--rose2)}
-
-.divider{height:1px;width:80%;margin:18px auto;background:rgba(0,0,0,.18)}
-
-.hero-butterfly{
-  width:96px;
-  margin:12px auto;
-  animation:bob 3s ease-in-out infinite;
-  cursor:pointer;
-}
-@keyframes bob{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(10px)}
+  font-size:40px;
+  color:var(--rose);
+  text-shadow:0 8px 22px rgba(180,122,134,.3)
 }
 
-.block-text{
-  margin-top:12px;
+.invite-text,
+.place-text,
+.date-text{
   font-size:20px;
   letter-spacing:.12em;
   text-transform:uppercase;
-  color:rgba(0,0,0,.72);
   line-height:1.75;
+  color:rgba(0,0,0,.72)
 }
 
-/* кнопки */
-.mapbtn,.btn{
-  display:inline-block;
+.cal{
   margin-top:18px;
-  padding:14px 24px;
-  border-radius:999px;
-  background:rgba(180,122,134,.85);
-  color:#fff;
-  text-decoration:none;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  box-shadow:var(--shadow2);
-  border:none;
-  cursor:pointer;
+  border-radius:18px;
+  overflow:hidden;
+  background:rgba(255,255,255,.45);
+  border:1px solid rgba(0,0,0,.15)
 }
-
-/* форма */
-.form{display:grid;gap:14px;margin-top:16px}
-.input{
-  width:100%;
-  padding:14px 16px;
-  border-radius:999px;
-  border:1px solid rgba(0,0,0,.25);
-  background:rgba(255,255,255,.6);
-  font-size:16px;
-}
-.radios{display:grid;gap:10px;text-align:left}
-.radio{display:flex;gap:10px;font-size:18px}
-.radio input{accent-color:var(--rose)}
-
-.status{margin-top:6px;font-size:14px;color:rgba(0,0,0,.6)}
-
-.footer-note{
-  margin-top:18px;
-  font-size:16px;
-  letter-spacing:.1em;
-  text-transform:uppercase;
-  color:rgba(0,0,0,.55);
-}
-
-/* музыка */
-.music-hint{
-  position:fixed;
-  bottom:90px;
-  left:50%;
-  transform:translateX(-50%);
-  background:rgba(255,255,255,.9);
-  padding:10px 16px;
-  border-radius:999px;
-  box-shadow:0 8px 22px rgba(0,0,0,.18);
-  display:none;
-}
-.music-hint.show{display:flex;gap:8px;align-items:center}
-
-.music-modal{
-  position:fixed;inset:0;
-  display:none;
-  align-items:flex-end;
-  justify-content:center;
-  background:rgba(0,0,0,.18);
-  z-index:9999;
-  padding:18px;
-}
-.music-modal.show{display:flex}
-
-.music-sheet{
-  background:rgba(255,255,255,.9);
-  border-radius:22px;
-  padding:18px;
-  width:100%;
-  max-width:520px;
-  text-align:center;
-}
-
-.music-actions{display:flex;gap:12px;justify-content:center;margin-top:10px}
-.chip{
-  padding:12px 18px;
-  border-radius:999px;
-  border:none;
-  text-transform:uppercase;
-  letter-spacing:.1em;
-  cursor:pointer;
-}
-.chip.yes{background:rgba(180,122,134,.9);color:#fff}
-.chip.no{background:#eee}
-
-.music-fab{
-  position:fixed;
-  right:14px;
-  bottom:14px;
-  background:#fff;
-  padding:10px 14px;
-  border-radius:999px;
-  box-shadow:0 18px 48px rgba(0,0,0,.16);
-  display:none;
-  gap:10px;
-  align-items:center;
-}
-.music-fab button{
-  width:44px;height:44px;
+.dow,.grid{display:grid;grid-template-columns:repeat(7,1fr)}
+.dow div{padding:8px;font-size:14px;letter-spacing:.12em}
+.grid div{padding:12px;font-size:17px}
+.sel{font-weight:700;position:relative}
+.sel::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  margin:auto;
+  width:38px;height:38px;
   border-radius:50%;
-  border:none;
-  background:rgba(180,122,134,.9);
-  color:#fff;
+  background:rgba(180,122,134,.2);
+  z-index:-1
 }
+
+.form{display:grid;gap:12px;margin-top:12px}
+.input{padding:14px;border-radius:999px;border:1px solid rgba(0,0,0,.2)}
+.btn{
+  padding:14px;
+  border-radius:999px;
+  border:none;
+  background:var(--rose);
+  color:#fff;
+  font-size:18px;
+  letter-spacing:.12em;
+  cursor:pointer
+}
+
+.countdown{margin-top:18px}
+.digits{display:flex;justify-content:center;gap:10px}
+.flip{
+  background:var(--rose);
+  color:#fff;
+  padding:14px;
+  border-radius:14px;
+  font-size:32px
+}
+
+/* Music */
+.music-modal{position:fixed;inset:0;background:rgba(0,0,0,.2);display:none;align-items:center;justify-content:center;z-index:999}
+.music-modal.show{display:flex}
+.music-box{background:#fff;padding:24px;border-radius:20px;text-align:center}
+.music-box button{margin:8px;padding:12px 20px;border-radius:999px;border:none;cursor:pointer}
 </style>
 </head>
 
@@ -209,51 +109,37 @@ section{position:relative;padding:22px 10px;margin:14px auto;text-align:center}
 <div class="bg"></div>
 <div class="veil"></div>
 
-<audio id="bgm" preload="auto" loop>
-  <source src="./Серік Ибрагимов feat. Еркеш Хасен - Қызым (Live).mp3">
+<audio id="bgm" loop preload="auto">
+  <source src="./Erkesh_Hasen_-_yzym_(SkySound.cc).mp3" type="audio/mpeg">
 </audio>
 
-<div class="music-hint" id="musicHint"><span>🎵</span> Музыкалық сүйемелдеу</div>
-
 <div class="music-modal" id="musicModal">
-  <div class="music-sheet">
-    <div class="caps">Включить музыку?</div>
-    <div class="music-actions">
-      <button class="chip yes" id="musicYes">Да</button>
-      <button class="chip no" id="musicNo">Нет</button>
-    </div>
+  <div class="music-box">
+    <p class="caps">Включить музыку?</p>
+    <button onclick="playMusic()">Да</button>
+    <button onclick="closeMusic()">Нет</button>
   </div>
-</div>
-
-<div class="music-fab" id="musicFab">
-  <button id="musicToggle">▶</button>
-  <div class="caps">Музыка</div>
 </div>
 
 <main class="wrap">
 
+<!-- 1. HERO -->
 <section>
-  <img src="./element_2.png" class="decor d2">
-  <img src="./element_3.png" class="decor d1">
   <div class="card">
     <div class="script title-name">Латифа</div>
     <div class="yearline">
       <span class="digit-one">1</span>
-      <span class="yearword">годик</span>
+      <span class="caps">годик</span>
     </div>
     <p class="caps">Тұсаукесер</p>
-    <div class="divider"></div>
-    <img src="./element_6.png" class="hero-butterfly" onclick="document.getElementById('rsvp').scrollIntoView({behavior:'smooth'})">
-    <p class="caps">Прокрутите вниз</p>
   </div>
 </section>
 
+<!-- 2. INVITE -->
 <section>
-  <img src="./element_1.png" class="decor d3">
-  <img src="./element_4.png" class="decor d4">
   <div class="card">
-    <div class="script" style="font-size:46px">Дорогие гости!</div>
-    <div class="block-text">
+    <div class="script" style="font-size:52px">Дорогие гости!</div>
+    <div class="invite-text">
       С радостью приглашаем Вас<br>
       на первый годик нашей доченьки<br>
       и обряд Тұсаукесер!<br>
@@ -262,34 +148,57 @@ section{position:relative;padding:22px 10px;margin:14px auto;text-align:center}
   </div>
 </section>
 
+<!-- 3. PLACE -->
 <section>
   <div class="card">
-    <div class="script" style="font-size:46px">Место проведения</div>
-    <div class="block-text">
+    <div class="script" style="font-size:48px">Место проведения</div>
+    <div class="place-text">
       ГОРОД АЛМАТЫ<br>
-      УЛИЦА КЕРЕЙ – ЖАНИБЕК ХАНДАР, 8<br>
+      УЛ. КЕРЕЙ – ЖАНИБЕК ХАНДАР, 8<br>
       РЕСТОРАН «SABROSO»
     </div>
-    <a class="mapbtn" href="https://2gis.kz/almaty/search/Sabroso" target="_blank">Открыть карту</a>
-    <div class="script" style="font-size:52px;margin-top:20px">Болат – Зара</div>
   </div>
 </section>
 
-<section id="rsvp">
+<!-- 4. DATE + CALENDAR -->
+<section>
   <div class="card">
-    <p class="caps">Подтвердите, пожалуйста, своё присутствие</p>
-    <form class="form" id="rsvpForm">
-      <input class="input" name="name" placeholder="Ваше имя" required>
-      <div class="radios">
-        <label class="radio"><input type="radio" name="attendance" value="Приду" required> Приду</label>
-        <label class="radio"><input type="radio" name="attendance" value="Приду с парой"> Приду с парой</label>
-        <label class="radio"><input type="radio" name="attendance" value="Не смогу"> Не смогу</label>
+    <div class="script" style="font-size:48px">Дата торжества</div>
+    <div class="date-text">
+      11 апреля 2026 года<br>
+      время 14:00
+    </div>
+
+    <div class="cal">
+      <div class="dow">
+        <div>пн</div><div>вт</div><div>ср</div><div>чт</div><div>пт</div><div>сб</div><div>вс</div>
       </div>
+      <div class="grid">
+        <div></div><div></div><div></div><div>1</div><div>2</div><div>3</div><div>4</div>
+        <div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div class="sel">11</div>
+        <div>12</div><div>13</div><div>14</div><div>15</div><div>16</div><div>17</div><div>18</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. RSVP -->
+<section>
+  <div class="card">
+    <p class="caps">Подтвердите присутствие</p>
+    <form class="form">
+      <input class="input" placeholder="Ваше имя">
       <button class="btn">Отправить</button>
-      <div class="status" id="status"></div>
     </form>
-    <div class="footer-note">
-      Будем рады Вас видеть!<br>Ожидаем Вашего визита.
+
+    <!-- 6. COUNTDOWN -->
+    <div class="countdown">
+      <p class="caps">До торжества</p>
+      <div class="digits">
+        <div class="flip" id="dDays">00</div>
+        <div class="flip" id="dHours">00</div>
+        <div class="flip" id="dMins">00</div>
+      </div>
     </div>
   </div>
 </section>
@@ -299,34 +208,18 @@ section{position:relative;padding:22px 10px;margin:14px auto;text-align:center}
 <script>
 const bgm=document.getElementById('bgm');
 const modal=document.getElementById('musicModal');
-const hint=document.getElementById('musicHint');
-const fab=document.getElementById('musicFab');
-const yes=document.getElementById('musicYes');
-const no=document.getElementById('musicNo');
-const toggle=document.getElementById('musicToggle');
+window.onload=()=>modal.classList.add('show');
+function playMusic(){bgm.play();modal.classList.remove('show')}
+function closeMusic(){modal.classList.remove('show')}
 
-window.addEventListener('load',()=>{
-  hint.classList.add('show');
-  setTimeout(()=>modal.classList.add('show'),1200);
-});
-
-yes.onclick=async()=>{
-  modal.classList.remove('show');
-  hint.classList.remove('show');
-  await bgm.play();
-  fab.style.display='flex';
-  toggle.textContent='❚❚';
-};
-no.onclick=()=>{
-  modal.classList.remove('show');
-  hint.classList.remove('show');
-  fab.style.display='flex';
-  toggle.textContent='▶';
-};
-toggle.onclick=()=>{
-  if(bgm.paused){bgm.play();toggle.textContent='❚❚'}
-  else{bgm.pause();toggle.textContent='▶'}
-};
+const target=new Date('2026-04-11T14:00:00+05:00');
+setInterval(()=>{
+  const d=target-new Date();
+  if(d<0)return;
+  document.getElementById('dDays').textContent=Math.floor(d/86400000);
+  document.getElementById('dHours').textContent=Math.floor(d/3600000)%24;
+  document.getElementById('dMins').textContent=Math.floor(d/60000)%60;
+},1000);
 </script>
 
 </body>
